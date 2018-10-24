@@ -5,16 +5,12 @@ import io.github.nfdz.memotext.common.Text
 
 class HomePresenterImpl(var view: HomeView?, var interactor: HomeInteractor?) : HomePresenter {
 
-    private val DEFAULT_SORT_CRITERIA = SortCriteria.TITLE
-
-    private var sortCriteria: SortCriteria = DEFAULT_SORT_CRITERIA
-
     override fun onCreate() {
         loadTexts()
     }
 
     private fun loadTexts() {
-        interactor?.loadTexts(sortCriteria) {
+        interactor?.loadTexts {
             view?.setContent(it)
         }
     }
@@ -25,7 +21,7 @@ class HomePresenterImpl(var view: HomeView?, var interactor: HomeInteractor?) : 
     }
 
     override fun onSortCriteriaSelected(sortCriteria: SortCriteria) {
-        this.sortCriteria = sortCriteria
+        interactor?.saveSortCriteria(sortCriteria)
         loadTexts()
     }
 
@@ -40,6 +36,7 @@ class HomePresenterImpl(var view: HomeView?, var interactor: HomeInteractor?) : 
     override fun onDeleteTextClick(text: Text) {
         interactor?.deleteText(text) {
             view?.showDeletedTextMessage(text)
+            loadTexts()
         }
     }
 
@@ -58,7 +55,9 @@ class HomePresenterImpl(var view: HomeView?, var interactor: HomeInteractor?) : 
     }
 
     override fun onChangeSortCriteriaClick() {
-        view?.askSortCriteria()
+        interactor?.let {
+            view?.askSortCriteria(it.getSortCriteria())
+        }
     }
 
     override fun onSettingsClick() {

@@ -2,22 +2,20 @@ package io.github.nfdz.memotext.home
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import io.github.nfdz.memotext.R
-import io.github.nfdz.memotext.common.Level
-import io.github.nfdz.memotext.common.Text
-import io.github.nfdz.memotext.common.showSnackbar
-import io.github.nfdz.memotext.common.showSnackbarWithAction
+import io.github.nfdz.memotext.common.*
 import kotlinx.android.synthetic.main.activity_home.*
 
 
-class HomeActivity : AppCompatActivity(), HomeView, TextsAdapter.Listener {
+class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
 
-    val presenter: HomePresenter by lazy { HomePresenterImpl(this, HomeInteractorImpl()) }
+    val presenter: HomePresenter by lazy { HomePresenterImpl(this, HomeInteractorImpl(this)) }
     val adapter = TextsAdapter(listener = this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,8 +72,29 @@ class HomeActivity : AppCompatActivity(), HomeView, TextsAdapter.Listener {
         })
     }
 
-    override fun askSortCriteria() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun askSortCriteria(currentSortCriteria: SortCriteria) {
+        val options = listOf<String>(getString(R.string.sort_by_title),
+            getString(R.string.sort_by_level),
+            getString(R.string.sort_by_percentage),
+            getString(R.string.sort_by_date))
+        val checkedItem = when(currentSortCriteria) {
+            SortCriteria.TITLE -> 0
+            SortCriteria.LEVEL -> 1
+            SortCriteria.PERCENTAGE -> 2
+            SortCriteria.DATE -> 3
+        }
+        AlertDialog.Builder(this).apply {
+            title = getString(R.string.action_sort)
+            setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.dismiss() }
+        }.setSingleChoiceItems(options.toTypedArray(), checkedItem) { dialog, which ->
+            presenter.onSortCriteriaSelected(when(which) {
+                1 -> SortCriteria.LEVEL
+                2 -> SortCriteria.PERCENTAGE
+                3 -> SortCriteria.DATE
+                else -> SortCriteria.TITLE
+            })
+            dialog.dismiss()
+        }.show()
     }
 
     override fun navigateToSettings() {
@@ -104,6 +123,10 @@ class HomeActivity : AppCompatActivity(), HomeView, TextsAdapter.Listener {
 
     override fun onEditTextClick(text: Text) {
         presenter.onEditTextClick(text)
+    }
+
+    override fun onDeleteClick(text: Text) {
+        presenter.onDeleteTextClick(text)
     }
 
 }

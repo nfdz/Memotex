@@ -16,13 +16,14 @@ import kotlinx.android.synthetic.main.item_text_entry.view.*
 import kotlin.properties.Delegates
 
 
-class TextsAdapter(data: List<Text> = emptyList(), val listener: Listener) : RecyclerView.Adapter<TextsAdapter.TextEntryHolder>() {
+interface AdapterListener {
+    fun onTextClick(text: Text)
+    fun onEditTextClick(text: Text)
+    fun onLevelIconClick(text: Text)
+    fun onDeleteClick(text: Text)
+}
 
-    interface Listener {
-        fun onTextClick(text: Text)
-        fun onEditTextClick(text: Text)
-        fun onLevelIconClick(text: Text)
-    }
+class TextsAdapter(data: List<Text> = emptyList(), val listener: AdapterListener) : RecyclerView.Adapter<TextsAdapter.TextEntryHolder>() {
 
     var data by Delegates.observable(data) { _, oldList, newList ->
         val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
@@ -52,7 +53,9 @@ class TextsAdapter(data: List<Text> = emptyList(), val listener: Listener) : Rec
 
     override fun getItemCount(): Int = data.size
 
-    class TextEntryHolder(view: View, val listener: Listener) : RecyclerView.ViewHolder(view) {
+    class TextEntryHolder(view: View, val listener: AdapterListener) : RecyclerView.ViewHolder(view) {
+
+        var bindedText: Text? = null
 
         fun bind(item: Text) = with(itemView) {
             tv_text_title.text = item.title
@@ -71,6 +74,11 @@ class TextsAdapter(data: List<Text> = emptyList(), val listener: Listener) : Rec
             iv_level_trophy.setOnClickListener { listener.onLevelIconClick(item) }
             setOnClickListener { listener.onTextClick(item) }
             setOnLongClickListener { listener.onEditTextClick(item); true }
+            bindedText = item
+        }
+
+        fun onSwiped() {
+            bindedText?.let { listener.onDeleteClick(it) }
         }
 
     }
@@ -79,16 +87,18 @@ class TextsAdapter(data: List<Text> = emptyList(), val listener: Listener) : Rec
 
 class TextSwipeController : ItemTouchHelper.Callback() {
 
-    override fun getMovementFlags(p0: RecyclerView, p1: RecyclerView.ViewHolder): Int {
+    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
         return ItemTouchHelper.Callback.makeMovementFlags(0, LEFT or RIGHT)
     }
 
-    override fun onMove(p0: RecyclerView, p1: RecyclerView.ViewHolder, p2: RecyclerView.ViewHolder): Boolean {
+    override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
         return false
     }
 
-    override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        if (viewHolder is TextsAdapter.TextEntryHolder) {
+            viewHolder.onSwiped()
+        }
     }
 
 }

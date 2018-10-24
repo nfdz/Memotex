@@ -8,7 +8,7 @@ interface HomeView {
     fun setContent(texts: List<Text>)
     fun showDeletedTextMessage(text: Text)
     fun showLevelText(level: Level)
-    fun askSortCriteria()
+    fun askSortCriteria(currentSortCriteria: SortCriteria)
     fun navigateToAddText()
     fun navigateToEditText(text: Text)
     fun navigateToExercise(text: Text)
@@ -30,7 +30,9 @@ interface HomePresenter {
 }
 
 interface HomeInteractor {
-    fun loadTexts(criteria: SortCriteria, callback: (List<Text>) -> Unit)
+    fun getSortCriteria(): SortCriteria
+    fun saveSortCriteria(sortCriteria: SortCriteria)
+    fun loadTexts(callback: (List<Text>) -> Unit)
     fun deleteText(text: Text, callback: (Text) -> Unit)
     fun undoDeleteText(text: Text, callback: () -> Unit)
 }

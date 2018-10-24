@@ -1,23 +1,45 @@
 package io.github.nfdz.memotext.home
 
-import io.github.nfdz.memotext.common.Level
-import io.github.nfdz.memotext.common.SortCriteria
-import io.github.nfdz.memotext.common.Text
+import android.content.Context
+import io.github.nfdz.memotext.common.*
 
-class HomeInteractorImpl : HomeInteractor {
+class HomeInteractorImpl(val context: Context) : HomeInteractor {
+
+    var cachedTexts: List<Text>? = null
+
+    override fun getSortCriteria(): SortCriteria {
+        return context.getSortCriteriaPref()
+    }
+
+    override fun saveSortCriteria(sortCriteria: SortCriteria) {
+        context.saveSortCriteriaPref(sortCriteria)
+    }
 
     override fun deleteText(text: Text, callback: (Text) -> Unit) {
-        // TODO
+        val mutableList = cachedTexts!!.toMutableList()
+        mutableList.remove(text)
+        cachedTexts = mutableList.toList()
         callback(text)
     }
 
     override fun undoDeleteText(text: Text, callback: () -> Unit) {
-        // TODO
+        val mutableList = cachedTexts!!.toMutableList()
+        mutableList.add(text)
+        cachedTexts = mutableList.toList()
         callback()
     }
 
-    override fun loadTexts(criteria: SortCriteria, callback: (List<Text>) -> Unit) {
-        callback((1..90).flatMap { listOf(Text("Test title $it", "Lorem ipsum", Level.SILVER, 10, 0L))} )
+    override fun loadTexts(callback: (List<Text>) -> Unit) {
+        if (cachedTexts == null) {
+            cachedTexts = (1..90).flatMap { listOf(Text("Test title $it", "Lorem ipsum", Level.SILVER, 10, 0L))}
+        }
+        when(getSortCriteria()) {
+            SortCriteria.TITLE -> cachedTexts!!.sortedBy { it.title }
+            SortCriteria.LEVEL -> cachedTexts!!.sortedBy { it.level }
+            SortCriteria.PERCENTAGE -> cachedTexts!!.sortedBy { it.percentage }
+            SortCriteria.DATE -> cachedTexts!!.sortedBy { it.timestamp }
+        }
+        callback(cachedTexts!!)
     }
 
 }

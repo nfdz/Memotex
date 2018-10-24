@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#00A38F</color>
     <color name="colorPrimaryDark">#00A38F</color>
     <color name="colorAccent">#00A38F</color>
@@ -8,4 +9,11 @@
     <color name="dark">#212121</color>
 
     <color name="textColorLight">@color/light</color>
+    <color name="textColorDark">@color/dark</color>
+    <color name="textColorGray">#666666</color>
+
+    <color name="goldColor">#D3AF37</color>
+    <color name="silverColor">#A8A9AD</color>
+    <color name="bronzeColor">#DE6903</color>
+
 </resources>

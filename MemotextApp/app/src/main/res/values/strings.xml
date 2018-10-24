@@ -1,4 +1,12 @@
 <resources>
+
     <string name="app_name">Memotext</string>
+    <string name="action_sort">Sort by</string>
     <string name="action_settings">Settings</string>
+    <string name="text_deleted">Text deleted</string>
+    <string name="text_deleted_action">Undo</string>
+    <string name="level_bronze_msg">Level bronze (easy)</string>
+    <string name="level_silver_msg">Level silver (medium)</string>
+    <string name="level_gold_msg">Level gold (hard)</string>
+
 </resources>

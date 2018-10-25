@@ -1,83 +1,91 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="Bronze">
+    <Preference
+        android:title="@string/pref_lvl_restore_default_title"
+        android:key="@string/pref_lvl_restore_default_key"/>
+
+    <PreferenceCategory android:title="@string/level_bronze">
 
         <EditTextPreference
             android:capitalize="words"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:maxLength="2"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:defaultValue="55"
-            android:key="bronze_words"
-            android:title="Words to hide" />
+            android:defaultValue="@string/pref_lvl_bronze_words_default"
+            android:textAlignment="center"
+            android:key="@string/pref_lvl_bronze_words_key"
+            android:title="@string/pref_lvl_words_title" />
 
         <EditTextPreference
             android:capitalize="words"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:maxLength="2"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:defaultValue="55"
-            android:key="bronze_letters"
-            android:title="Letters of the word to hide" />
+            android:defaultValue="@string/pref_lvl_bronze_letters_default"
+            android:textAlignment="center"
+            android:key="@string/pref_lvl_bronze_letters_key"
+            android:title="@string/pref_lvl_letters_title" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Silver">
+    <PreferenceCategory android:title="@string/level_silver">
 
         <EditTextPreference
             android:capitalize="words"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:maxLength="2"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:defaultValue="55"
-            android:key="silver_words"
-            android:title="Words to hide" />
+            android:defaultValue="@string/pref_lvl_silver_words_default"
+            android:textAlignment="center"
+            android:key="@string/pref_lvl_silver_words_key"
+            android:title="@string/pref_lvl_words_title" />
 
         <EditTextPreference
             android:capitalize="words"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:maxLength="2"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:defaultValue="55"
-            android:key="silver_letters"
-            android:title="Letters of the word to hide" />
+            android:defaultValue="@string/pref_lvl_silver_letters_default"
+            android:textAlignment="center"
+            android:key="@string/pref_lvl_silver_letters_key"
+            android:title="@string/pref_lvl_letters_title" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Gold">
+    <PreferenceCategory android:title="@string/level_gold">
 
         <EditTextPreference
             android:capitalize="words"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:maxLength="2"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:defaultValue="55"
-            android:key="gold_words"
-            android:title="Words to hide" />
+            android:defaultValue="@string/pref_lvl_gold_words_default"
+            android:textAlignment="center"
+            android:key="@string/pref_lvl_gold_words_key"
+            android:title="@string/pref_lvl_words_title" />
 
         <EditTextPreference
             android:capitalize="words"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:maxLength="2"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:defaultValue="55"
-            android:key="gold_letters"
-            android:title="Letters of the word to hide" />
+            android:defaultValue="@string/pref_lvl_gold_letters_default"
+            android:textAlignment="center"
+            android:key="@string/pref_lvl_gold_letters_key"
+            android:title="@string/pref_lvl_letters_title" />
 
     </PreferenceCategory>
-
-    <Preference android:title="Restore default values"/>
 
 </PreferenceScreen>

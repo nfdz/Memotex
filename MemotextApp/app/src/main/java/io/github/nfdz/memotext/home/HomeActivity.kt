@@ -1,6 +1,5 @@
 package io.github.nfdz.memotext.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
@@ -11,7 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import io.github.nfdz.memotext.R
 import io.github.nfdz.memotext.common.*
-import io.github.nfdz.memotext.settings.SettingsActivity
+import io.github.nfdz.memotext.settings.startSettingsActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 
@@ -99,7 +98,7 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
     }
 
     override fun navigateToSettings() {
-        startActivity(Intent(this, SettingsActivity::class.java))
+        startSettingsActivity()
     }
 
     override fun navigateToAddText() {

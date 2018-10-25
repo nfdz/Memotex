@@ -44,7 +44,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:padding="4dp"
-        app:srcCompat="@drawable/ic_trophy"
+        app:srcCompat="@drawable/ic_trophy_light"
         tools:tint="@color/bronzeColor"
         android:background="?attr/selectableItemBackground"
         app:layout_constraintRight_toRightOf="parent"

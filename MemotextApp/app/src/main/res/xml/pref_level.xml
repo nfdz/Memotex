@@ -1,0 +1,83 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Bronze">
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="numberDecimal"
+            android:maxLength="2"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:defaultValue="55"
+            android:key="bronze_words"
+            android:title="Words to hide" />
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="numberDecimal"
+            android:maxLength="2"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:defaultValue="55"
+            android:key="bronze_letters"
+            android:title="Letters of the word to hide" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Silver">
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="numberDecimal"
+            android:maxLength="2"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:defaultValue="55"
+            android:key="silver_words"
+            android:title="Words to hide" />
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="numberDecimal"
+            android:maxLength="2"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:defaultValue="55"
+            android:key="silver_letters"
+            android:title="Letters of the word to hide" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Gold">
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="numberDecimal"
+            android:maxLength="2"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:defaultValue="55"
+            android:key="gold_words"
+            android:title="Words to hide" />
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="numberDecimal"
+            android:maxLength="2"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:defaultValue="55"
+            android:key="gold_letters"
+            android:title="Letters of the word to hide" />
+
+    </PreferenceCategory>
+
+    <Preference android:title="Restore default values"/>
+
+</PreferenceScreen>

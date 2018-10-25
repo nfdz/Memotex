@@ -1,5 +1,6 @@
 package io.github.nfdz.memotext.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
@@ -10,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import io.github.nfdz.memotext.R
 import io.github.nfdz.memotext.common.*
+import io.github.nfdz.memotext.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 
@@ -85,7 +87,6 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
         }
         AlertDialog.Builder(this).apply {
             title = getString(R.string.action_sort)
-            setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.dismiss() }
         }.setSingleChoiceItems(options.toTypedArray(), checkedItem) { dialog, which ->
             presenter.onSortCriteriaSelected(when(which) {
                 1 -> SortCriteria.LEVEL
@@ -98,7 +99,7 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
     }
 
     override fun navigateToSettings() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        startActivity(Intent(this, SettingsActivity::class.java))
     }
 
     override fun navigateToAddText() {

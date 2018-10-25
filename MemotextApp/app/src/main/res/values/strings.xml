@@ -8,10 +8,15 @@
     <string name="level_bronze_msg">Level bronze (easy)</string>
     <string name="level_silver_msg">Level silver (medium)</string>
     <string name="level_gold_msg">Level gold (hard)</string>
-    
+
     <string name="sort_by_title">Title</string>
     <string name="sort_by_level">Level</string>
     <string name="sort_by_percentage">Percentage</string>
     <string name="sort_by_date">Date</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+    <string name="pref_header_level">Level</string>
+    <string name="pref_header_about">About</string>
 
 </resources>

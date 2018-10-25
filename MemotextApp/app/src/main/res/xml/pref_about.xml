@@ -1,0 +1,14 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference android:title="Send feedback, questions and bugs">
+        <intent android:action="android.content.Intent.ACTION_SEND"
+            android:mimeType="plain/text"
+            android:data="test@gmail.com" />
+    </Preference>
+
+    <Preference android:title="Free software GPLv3">
+        <intent android:action="android.content.Intent.ACTION_VIEW"
+            android:data="http://gmail.com" />
+    </Preference>
+
+</PreferenceScreen>

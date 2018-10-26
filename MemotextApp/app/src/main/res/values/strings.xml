@@ -18,6 +18,9 @@
     <string name="sort_by_date">Date</string>
     <string name="title_activity_settings">Settings</string>
 
+    <string name="add_text_title">Add text</string>
+    <string name="edit_text_title">Edit text</string>
+
     <!-- Strings related to Settings -->
     <string name="pref_header_level">Level</string>
     <string name="pref_header_about">About</string>

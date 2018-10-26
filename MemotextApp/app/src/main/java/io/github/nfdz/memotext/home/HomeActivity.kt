@@ -10,6 +10,8 @@ import android.view.MenuItem
 import android.view.View
 import io.github.nfdz.memotext.R
 import io.github.nfdz.memotext.common.*
+import io.github.nfdz.memotext.editor.startAddTextActivity
+import io.github.nfdz.memotext.editor.startEditTextActivity
 import io.github.nfdz.memotext.settings.startSettingsActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -102,11 +104,11 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
     }
 
     override fun navigateToAddText() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        startAddTextActivity()
     }
 
     override fun navigateToEditText(text: Text) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        startEditTextActivity(text)
     }
 
     override fun navigateToExercise(text: Text) {

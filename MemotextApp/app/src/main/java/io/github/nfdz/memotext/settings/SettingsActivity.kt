@@ -15,10 +15,8 @@ import io.github.nfdz.memotext.R
 import io.github.nfdz.memotext.common.showSnackbar
 import timber.log.Timber
 
-fun Context.startSettingsActivity(flags: Int = 0) {
-    val starter = Intent(this, SettingsActivity::class.java)
-    starter.flags = flags
-    startActivity(starter)
+fun Context.startSettingsActivity() {
+    startActivity(Intent(this, SettingsActivity::class.java))
 }
 
 class SettingsActivity : AppCompatPreferenceActivity() {
@@ -42,6 +40,15 @@ class SettingsActivity : AppCompatPreferenceActivity() {
 
     override fun onBuildHeaders(target: List<PreferenceActivity.Header>) {
         loadHeadersFromResource(R.xml.pref_headers, target)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (!super.onOptionsItemSelected(item) && (item.itemId == android.R.id.home)) {
+            finish()
+            true
+        } else {
+            false
+        }
     }
 
     /**
@@ -150,7 +157,7 @@ class SettingsActivity : AppCompatPreferenceActivity() {
                     starter.putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
                     starter.data = Uri.parse(email)
                     starter.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_feedback_subject));
-                    starter.type = "plain/text"
+                    starter.type = "plain/content"
                     startActivity(starter)
                 } catch (e: Exception) {
                     Timber.e(e)
@@ -181,7 +188,7 @@ class SettingsActivity : AppCompatPreferenceActivity() {
 
 fun PreferenceFragment.handleOptionsItemSelected(item: MenuItem): Boolean {
     return if (item.itemId == android.R.id.home) {
-        activity.startSettingsActivity(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        fragmentManager.popBackStack()
         true
     } else {
         false

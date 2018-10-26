@@ -29,7 +29,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".home.HomeActivity" />
         </activity>
-        <activity android:name=".editor.EditorActivity"
+        <activity
+            android:name=".editor.EditorActivity"
+            android:parentActivityName=".home.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".home.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".exercise.ExerciseActivity"
+            android:label="@string/exercise_title"
             android:parentActivityName=".home.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

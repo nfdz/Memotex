@@ -26,6 +26,10 @@
     <string name="editor_save_title_error">The title is the same as that of another text, please use another</string>
     <string name="editor_save_error">Cannot save text</string>
 
+    <string name="exercise_title">Exercise</string>
+    <string name="exercise_font_bigger_description">Increase font size</string>
+    <string name="exercise_font_smaller_description">Decrease font size</string>
+
     <!-- Strings related to Settings -->
     <string name="pref_header_level">Level</string>
     <string name="pref_header_about">About</string>

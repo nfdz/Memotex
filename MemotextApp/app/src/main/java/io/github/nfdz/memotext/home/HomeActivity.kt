@@ -13,6 +13,7 @@ import io.github.nfdz.memotext.R
 import io.github.nfdz.memotext.common.*
 import io.github.nfdz.memotext.editor.startAddTextActivity
 import io.github.nfdz.memotext.editor.startEditTextActivity
+import io.github.nfdz.memotext.exercise.startExerciseActivity
 import io.github.nfdz.memotext.settings.startSettingsActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -123,7 +124,7 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
     }
 
     override fun navigateToExercise(text: Text) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        startExerciseActivity(text)
     }
 
     override fun onTextClick(text: Text) {

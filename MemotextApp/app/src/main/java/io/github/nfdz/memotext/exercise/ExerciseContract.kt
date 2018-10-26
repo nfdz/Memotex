@@ -1,10 +1,11 @@
 package io.github.nfdz.memotext.exercise
 
+import io.github.nfdz.memotext.common.Exercise
 import io.github.nfdz.memotext.common.Level
 
 interface ExerciseView {
     fun showLoading()
-    fun showExercise(title: String)
+    fun showExercise(title: String, exercise: Exercise)
     fun setExerciseProgress(progress: Int)
     fun increaseFontSize()
     fun decreaseFontSize()
@@ -21,5 +22,5 @@ interface ExercisePresenter {
 }
 
 interface ExerciseInteractor {
-
+    fun prepareExercise(content: String, level: Level, callback: (exercise: Exercise) -> Unit)
 }

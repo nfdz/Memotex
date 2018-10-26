@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import io.github.nfdz.memotext.R
+import io.github.nfdz.memotext.common.Exercise
 import io.github.nfdz.memotext.common.Level
 import io.github.nfdz.memotext.common.Text
 import io.github.nfdz.memotext.common.getStringExtra
@@ -25,7 +26,7 @@ private val EXTRA_TEXT_LEVEL = "text_level"
 
 class ExerciseActivity : AppCompatActivity(), ExerciseView {
 
-    val presenter: ExercisePresenter by lazy { ExercisePresenterImpl(this, ExerciseInteractorImpl()) }
+    val presenter: ExercisePresenter by lazy { ExercisePresenterImpl(this, ExerciseInteractorImpl(this)) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,10 +53,12 @@ class ExerciseActivity : AppCompatActivity(), ExerciseView {
         exercise_group_ongoing.visibility = View.GONE
     }
 
-    override fun showExercise(title: String) {
+    override fun showExercise(title: String, exercise: Exercise) {
         exercise_loading.visibility = View.GONE
         exercise_group_ongoing.visibility = View.VISIBLE
         exercise_tv_title.text = title
+
+        // TODO
     }
 
     override fun setExerciseProgress(progress: Int) {

@@ -61,4 +61,7 @@
     <string name="pref_lvl_gold_words_default" translatable="false">30</string>
     <string name="pref_lvl_gold_letters_default" translatable="false">40</string>
 
+    <string name="pref_sort_criteria_key" translatable="false">sort_criteria</string>
+    <string name="pref_sort_criteria_default" translatable="false">TITLE</string>
+
 </resources>

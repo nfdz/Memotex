@@ -1,6 +1,7 @@
 package io.github.nfdz.memotext.home
 
 import android.content.Context
+import io.github.nfdz.memotext.R
 import io.github.nfdz.memotext.common.*
 
 class HomeInteractorImpl(val context: Context) : HomeInteractor {
@@ -8,11 +9,16 @@ class HomeInteractorImpl(val context: Context) : HomeInteractor {
     var cachedTexts: List<Text>? = null
 
     override fun getSortCriteria(): SortCriteria {
-        return context.getSortCriteriaPref()
+        return SortCriteria.valueOf(context.getStringFromPreferences(R.string.pref_sort_criteria_key, R.string.pref_sort_criteria_default))
     }
 
-    override fun saveSortCriteria(sortCriteria: SortCriteria) {
-        context.saveSortCriteriaPref(sortCriteria)
+    override fun setSortCriteria(sortCriteria: SortCriteria, callback: () -> Unit) {
+        doAsync {
+            context.setStringInPreferences(R.string.pref_sort_criteria_key, sortCriteria.name)
+            doMainThread {
+                callback()
+            }
+        }
     }
 
     override fun deleteText(text: Text, callback: (Text) -> Unit) {

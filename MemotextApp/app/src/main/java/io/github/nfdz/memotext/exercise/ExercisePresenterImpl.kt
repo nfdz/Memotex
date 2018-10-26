@@ -1,15 +1,19 @@
 package io.github.nfdz.memotext.exercise
 
-import android.os.Handler
 import io.github.nfdz.memotext.common.Level
 
 class ExercisePresenterImpl(var view: ExerciseView?, var interactor: ExerciseInteractor?) : ExercisePresenter {
 
+    var title = ""
+    var level = Level.BRONZE
+
     override fun onCreate(title: String, content: String, level: Level) {
+        this.title = title
+        this.level = level
         view?.showLoading()
-        Handler().postDelayed({
-            view?.showExercise(title)
-        }, 5000)
+        interactor?.prepareExercise(content, level) {
+            view?.showExercise(title, it)
+        }
     }
 
     override fun onDestroy() {

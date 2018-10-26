@@ -32,7 +32,7 @@ interface HomePresenter {
 
 interface HomeInteractor {
     fun getSortCriteria(): SortCriteria
-    fun saveSortCriteria(sortCriteria: SortCriteria)
+    fun setSortCriteria(sortCriteria: SortCriteria, callback: () -> Unit)
     fun loadTexts(forceUpdateCache: Boolean, callback: (List<Text>) -> Unit)
     fun deleteText(text: Text, callback: (Text) -> Unit)
     fun undoDeleteText(text: Text, callback: () -> Unit)

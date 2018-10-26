@@ -25,8 +25,9 @@ class HomePresenterImpl(var view: HomeView?, var interactor: HomeInteractor?) : 
     }
 
     override fun onSortCriteriaSelected(sortCriteria: SortCriteria) {
-        interactor?.saveSortCriteria(sortCriteria)
-        loadTexts(false)
+        interactor?.setSortCriteria(sortCriteria) {
+            loadTexts(false)
+        }
     }
 
     override fun onAddTextClick() {

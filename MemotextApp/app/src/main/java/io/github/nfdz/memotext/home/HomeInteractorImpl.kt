@@ -29,7 +29,8 @@ class HomeInteractorImpl(val context: Context) : HomeInteractor {
         callback()
     }
 
-    override fun loadTexts(callback: (List<Text>) -> Unit) {
+    override fun loadTexts(forceUpdateCache: Boolean, callback: (List<Text>) -> Unit) {
+        // TODO
         if (cachedTexts == null) {
             cachedTexts = (1..90).flatMap { listOf(Text("Test title $it", "Lorem ipsum", Level.SILVER, 10, 0L))}
         }

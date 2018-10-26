@@ -6,11 +6,11 @@ import io.github.nfdz.memotext.common.Text
 class HomePresenterImpl(var view: HomeView?, var interactor: HomeInteractor?) : HomePresenter {
 
     override fun onCreate() {
-        loadTexts()
+        loadTexts(false)
     }
 
-    private fun loadTexts() {
-        interactor?.loadTexts {
+    private fun loadTexts(forceUpdateCache: Boolean) {
+        interactor?.loadTexts(forceUpdateCache) {
             view?.setContent(it)
         }
     }
@@ -20,9 +20,13 @@ class HomePresenterImpl(var view: HomeView?, var interactor: HomeInteractor?) : 
         interactor = null
     }
 
+    override fun onEditorFinish() {
+        loadTexts(true)
+    }
+
     override fun onSortCriteriaSelected(sortCriteria: SortCriteria) {
         interactor?.saveSortCriteria(sortCriteria)
-        loadTexts()
+        loadTexts(false)
     }
 
     override fun onAddTextClick() {
@@ -36,13 +40,13 @@ class HomePresenterImpl(var view: HomeView?, var interactor: HomeInteractor?) : 
     override fun onDeleteTextClick(text: Text) {
         interactor?.deleteText(text) {
             view?.showDeletedTextMessage(text)
-            loadTexts()
+            loadTexts(false)
         }
     }
 
     override fun onUndoDeleteTextClick(text: Text) {
         interactor?.undoDeleteText(text) {
-            loadTexts()
+            loadTexts(false)
         }
     }
 

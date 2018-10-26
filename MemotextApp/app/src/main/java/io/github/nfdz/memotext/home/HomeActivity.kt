@@ -1,5 +1,6 @@
 package io.github.nfdz.memotext.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
@@ -18,6 +19,8 @@ import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
 
+    private val EDITOR_REQUEST_CODE = 44078
+
     val presenter: HomePresenter by lazy { HomePresenterImpl(this, HomeInteractorImpl(this)) }
     val adapter = TextsAdapter(listener = this)
 
@@ -25,6 +28,14 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
         super.onCreate(savedInstanceState)
         setupView()
         presenter.onCreate()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == EDITOR_REQUEST_CODE) {
+            presenter.onEditorFinish()
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
     }
 
     override fun onDestroy() {
@@ -104,11 +115,11 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
     }
 
     override fun navigateToAddText() {
-        startAddTextActivity()
+        startAddTextActivity(EDITOR_REQUEST_CODE)
     }
 
     override fun navigateToEditText(text: Text) {
-        startEditTextActivity(text)
+        startEditTextActivity(EDITOR_REQUEST_CODE, text)
     }
 
     override fun navigateToExercise(text: Text) {

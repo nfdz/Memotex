@@ -18,6 +18,7 @@ interface HomeView {
 interface HomePresenter {
     fun onCreate()
     fun onDestroy()
+    fun onEditorFinish()
     fun onSortCriteriaSelected(sortCriteria: SortCriteria)
     fun onAddTextClick()
     fun onEditTextClick(text: Text)
@@ -32,7 +33,7 @@ interface HomePresenter {
 interface HomeInteractor {
     fun getSortCriteria(): SortCriteria
     fun saveSortCriteria(sortCriteria: SortCriteria)
-    fun loadTexts(callback: (List<Text>) -> Unit)
+    fun loadTexts(forceUpdateCache: Boolean, callback: (List<Text>) -> Unit)
     fun deleteText(text: Text, callback: (Text) -> Unit)
     fun undoDeleteText(text: Text, callback: () -> Unit)
 }

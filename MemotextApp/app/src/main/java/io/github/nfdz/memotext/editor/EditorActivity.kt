@@ -1,8 +1,9 @@
 package io.github.nfdz.memotext.editor
 
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.text.InputType
 import io.github.nfdz.memotext.R
@@ -11,18 +12,18 @@ import io.github.nfdz.memotext.common.getStringExtra
 import io.github.nfdz.memotext.common.showSnackbar
 import kotlinx.android.synthetic.main.activity_editor.*
 
-fun Context.startAddTextActivity() {
+fun Activity.startAddTextActivity(requestCode: Int) {
     val starter = Intent(this, EditorActivity::class.java)
     starter.action = ACTION_ADD
-    startActivity(starter)
+    ActivityCompat.startActivityForResult(this, starter, requestCode, null)
 }
 
-fun Context.startEditTextActivity(text: Text) {
+fun Activity.startEditTextActivity(requestCode: Int, text: Text) {
     val starter = Intent(this, EditorActivity::class.java)
     starter.action = ACTION_EDIT
     starter.putExtra(EXTRA_TEXT_TITLE, text.title)
     starter.putExtra(EXTRA_TEXT_CONTENT, text.content)
-    startActivity(starter)
+    ActivityCompat.startActivityForResult(this, starter, requestCode, null)
 }
 
 private val ACTION_ADD = "add_text"
@@ -71,6 +72,7 @@ class EditorActivity : AppCompatActivity(), EditorView {
     }
 
     override fun navigateToFinish() {
+        setResult(Activity.RESULT_OK)
         finish()
     }
 

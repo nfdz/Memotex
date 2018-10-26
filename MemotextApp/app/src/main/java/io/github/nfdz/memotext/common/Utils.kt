@@ -1,5 +1,6 @@
 package io.github.nfdz.memotext.common
 
+import android.content.Intent
 import android.support.annotation.LayoutRes
 import android.support.design.widget.Snackbar
 import android.support.v4.text.HtmlCompat
@@ -30,4 +31,9 @@ fun View.showSnackbarWithAction(text: CharSequence,
 
 private fun processSnackbarText(text: CharSequence): Spanned {
     return HtmlCompat.fromHtml("<font color=\"#FAFAFA\">$text</font>", FROM_HTML_OPTION_USE_CSS_COLORS)
+}
+
+fun Intent.getStringExtra(name: String, defaultValue: String): String {
+    val result: String? = getStringExtra(name)
+    return result ?: defaultValue
 }

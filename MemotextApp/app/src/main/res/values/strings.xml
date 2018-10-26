@@ -20,6 +20,11 @@
 
     <string name="add_text_title">Add text</string>
     <string name="edit_text_title">Edit text</string>
+    <string name="text_title_hint">Title</string>
+    <string name="text_content_hint">Content</string>
+    <string name="editor_save_button">Save</string>
+    <string name="editor_save_title_error">The title is the same as that of another text, please use another</string>
+    <string name="editor_save_error">Cannot save text</string>
 
     <!-- Strings related to Settings -->
     <string name="pref_header_level">Level</string>

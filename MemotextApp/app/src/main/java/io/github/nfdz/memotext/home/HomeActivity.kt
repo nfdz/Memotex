@@ -10,7 +10,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import io.github.nfdz.memotext.R
-import io.github.nfdz.memotext.common.*
+import io.github.nfdz.memotext.common.Level
+import io.github.nfdz.memotext.common.SortCriteria
+import io.github.nfdz.memotext.common.Text
+import io.github.nfdz.memotext.common.showSnackbarWithAction
 import io.github.nfdz.memotext.editor.startAddTextActivity
 import io.github.nfdz.memotext.editor.startEditTextActivity
 import io.github.nfdz.memotext.exercise.startExerciseActivity
@@ -70,21 +73,13 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
         adapter.data = texts
     }
 
-    override fun showDeletedTextMessage(text: Text) {
+    override fun showDeletedMessage(text: Text) {
         coordinator_root.showSnackbarWithAction(getString(R.string.text_deleted),
             getString(R.string.text_deleted_action),
             Snackbar.LENGTH_LONG,
             View.OnClickListener {
                 presenter.onUndoDeleteTextClick(text)
             })
-    }
-
-    override fun showLevelText(level: Level) {
-        coordinator_root.showSnackbar(when(level) {
-            Level.BRONZE -> getString(R.string.level_bronze_msg)
-            Level.SILVER -> getString(R.string.level_silver_msg)
-            Level.GOLD -> getString(R.string.level_gold_msg)
-        })
     }
 
     override fun askSortCriteria(currentSortCriteria: SortCriteria) {
@@ -106,6 +101,27 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
                 2 -> SortCriteria.PERCENTAGE
                 3 -> SortCriteria.DATE
                 else -> SortCriteria.TITLE
+            })
+            dialog.dismiss()
+        }.show()
+    }
+
+    override fun askLevel(text: Text) {
+        val options = listOf<String>(getString(R.string.level_bronze_msg),
+            getString(R.string.level_silver_msg),
+            getString(R.string.level_gold_msg))
+        val checkedItem = when(text.level) {
+            Level.BRONZE -> 0
+            Level.SILVER -> 1
+            Level.GOLD -> 2
+        }
+        AlertDialog.Builder(this).apply {
+            title = getString(R.string.text_change_level_title)
+        }.setSingleChoiceItems(options.toTypedArray(), checkedItem) { dialog, which ->
+            presenter.onLevelSelected(text, when(which) {
+                1 -> Level.SILVER
+                2 ->Level.GOLD
+                else -> Level.BRONZE
             })
             dialog.dismiss()
         }.show()

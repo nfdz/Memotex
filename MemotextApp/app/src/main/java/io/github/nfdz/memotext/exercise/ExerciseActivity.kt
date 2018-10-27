@@ -107,8 +107,13 @@ class ExerciseActivity : AppCompatActivity(), ExerciseView, AdapterListener {
         }
     }
 
-    override fun navigateToResult(exercise: Exercise, answers: ExerciseAnswers) {
+    override fun navigateToResult(result: ExerciseResult) {
         // TODO
+    }
+
+    override fun navigateToError() {
+        toast(R.string.exercise_prepare_error)
+        finish()
     }
 
     override fun showChangeAnswerDialog(position: Int, currentAnswer: String) {
@@ -128,7 +133,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseView, AdapterListener {
             setView(container)
         }.setNegativeButton(android.R.string.cancel) { dialog: DialogInterface, _: Int ->
             dialog.cancel()
-        }.setPositiveButton(R.string.exercise_change_answer_ok) { dialog: DialogInterface, _: Int ->
+        }.setPositiveButton(android.R.string.ok) { dialog: DialogInterface, _: Int ->
             adapter.putAnswer(position, input.text.toString())
             dialog.dismiss()
         }.show()

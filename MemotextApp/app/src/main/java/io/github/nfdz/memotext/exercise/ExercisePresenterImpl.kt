@@ -3,6 +3,7 @@ package io.github.nfdz.memotext.exercise
 import io.github.nfdz.memotext.common.Exercise
 import io.github.nfdz.memotext.common.ExerciseAnswers
 import io.github.nfdz.memotext.common.Level
+import io.github.nfdz.memotext.common.bound
 
 class ExercisePresenterImpl(var view: ExerciseView?, var interactor: ExerciseInteractor?) : ExercisePresenter {
 
@@ -16,9 +17,11 @@ class ExercisePresenterImpl(var view: ExerciseView?, var interactor: ExerciseInt
         if (exercise != null) {
             view?.showExercise(title, exercise)
         } else {
-            interactor?.prepareExercise(content, level) {
+            interactor?.prepareExercise(content, level, {
                 view?.showExercise(title, it)
-            }
+            }, {
+                view?.navigateToError()
+            })
         }
     }
 
@@ -40,12 +43,14 @@ class ExercisePresenterImpl(var view: ExerciseView?, var interactor: ExerciseInt
     }
 
     override fun onProgressChanged(progress: Int) {
-        view?.setExerciseProgress(progress)
+        view?.setExerciseProgress(progress.bound(0, 100))
     }
 
     override fun onCheckExerciseClick(exercise: Exercise, answers: ExerciseAnswers) {
-        view?.navigateToResult(exercise, answers)
+        view?.showLoading()
+        interactor?.checkAnswers(title, level, exercise, answers) {
+            view?.navigateToResult(it)
+        }
     }
-
 
 }

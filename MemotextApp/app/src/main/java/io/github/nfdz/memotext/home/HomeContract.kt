@@ -6,9 +6,9 @@ import io.github.nfdz.memotext.common.Text
 
 interface HomeView {
     fun setContent(texts: List<Text>)
-    fun showDeletedTextMessage(text: Text)
-    fun showLevelText(level: Level)
+    fun showDeletedMessage(text: Text)
     fun askSortCriteria(currentSortCriteria: SortCriteria)
+    fun askLevel(text: Text)
     fun navigateToAddText()
     fun navigateToEditText(text: Text)
     fun navigateToExercise(text: Text)
@@ -27,6 +27,7 @@ interface HomePresenter {
     fun onLevelIconClick(text: Text)
     fun onTextClick(text: Text)
     fun onChangeSortCriteriaClick()
+    fun onLevelSelected(text: Text, level: Level)
     fun onSettingsClick()
 }
 
@@ -36,4 +37,5 @@ interface HomeInteractor {
     fun loadTexts(forceUpdateCache: Boolean, callback: (List<Text>) -> Unit)
     fun deleteText(text: Text, callback: (Text) -> Unit)
     fun undoDeleteText(text: Text, callback: () -> Unit)
+    fun changeTextLevel(text: Text, level: Level, callback: () -> Unit)
 }

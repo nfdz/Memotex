@@ -45,10 +45,14 @@ class EditorActivity : AppCompatActivity(), EditorView {
         setContentView(R.layout.activity_editor)
         setupActionBar()
         if (intent.action == ACTION_EDIT) {
-            editor_tie_content.append(intent.getStringExtra(EXTRA_TEXT_CONTENT, ""))
-            editor_tie_title.append(intent.getStringExtra(EXTRA_TEXT_TITLE, ""))
+            editor_tie_title.setText(intent.getStringExtra(EXTRA_TEXT_TITLE, ""))
+            editor_til_title.hint = getString(R.string.text_title_hint_unmodifiable)
+            editor_tie_title.setHint(R.string.text_title_hint_unmodifiable)
             editor_tie_title.inputType = InputType.TYPE_NULL
-            editor_tie_title.isEnabled = false
+            editor_tie_title.keyListener = null
+            editor_tie_title.isFocusable = false
+            editor_tie_title.isCursorVisible = false
+            editor_tie_content.setText(intent.getStringExtra(EXTRA_TEXT_CONTENT, ""))
         }
         btn_start_load.setOnClickListener { presenter.onSaveClick(editor_tie_title.text.toString(), editor_tie_content.text.toString()) }
     }

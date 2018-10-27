@@ -20,6 +20,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.Toast
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
@@ -39,6 +40,8 @@ fun View.showSnackbarWithAction(text: CharSequence,
     result.show()
     return result
 }
+
+fun Context?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) = this?.let { Toast.makeText(it, textId, duration).show() }
 
 private fun processSnackbarText(text: CharSequence): Spanned {
     return HtmlCompat.fromHtml("<font color=\"#FAFAFA\">$text</font>", FROM_HTML_OPTION_USE_CSS_COLORS)
@@ -114,4 +117,8 @@ fun View.showKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
     this.requestFocus()
     imm?.showSoftInput(this, 0)
+}
+
+fun Int.bound(fromInclusive: Int, toInclusive: Int): Int {
+    return Math.min(Math.max(this, fromInclusive), toInclusive)
 }

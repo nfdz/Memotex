@@ -1,5 +1,6 @@
 package io.github.nfdz.memotext.home
 
+import io.github.nfdz.memotext.common.Level
 import io.github.nfdz.memotext.common.SortCriteria
 import io.github.nfdz.memotext.common.Text
 
@@ -40,7 +41,7 @@ class HomePresenterImpl(var view: HomeView?, var interactor: HomeInteractor?) : 
 
     override fun onDeleteTextClick(text: Text) {
         interactor?.deleteText(text) {
-            view?.showDeletedTextMessage(text)
+            view?.showDeletedMessage(text)
             loadTexts(false)
         }
     }
@@ -52,7 +53,7 @@ class HomePresenterImpl(var view: HomeView?, var interactor: HomeInteractor?) : 
     }
 
     override fun onLevelIconClick(text: Text) {
-        view?.showLevelText(text.level)
+        view?.askLevel(text)
     }
 
     override fun onTextClick(text: Text) {
@@ -62,6 +63,12 @@ class HomePresenterImpl(var view: HomeView?, var interactor: HomeInteractor?) : 
     override fun onChangeSortCriteriaClick() {
         interactor?.let {
             view?.askSortCriteria(it.getSortCriteria())
+        }
+    }
+
+    override fun onLevelSelected(text: Text, level: Level) {
+        interactor?.changeTextLevel(text, level) {
+            loadTexts(false)
         }
     }
 

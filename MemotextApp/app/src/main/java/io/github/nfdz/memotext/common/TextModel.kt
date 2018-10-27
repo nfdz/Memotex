@@ -5,11 +5,7 @@ import io.realm.annotations.PrimaryKey
 
 class TextRealm(@PrimaryKey var title: String, var content: String, var level: Int, var percentage: Int, var timestamp: Long) : RealmObject()
 
-data class Text(val title: String, val content: String, val level: Level, val percentage: Int, val timestamp: Long) {
-    fun getPercentageBounded(): Int {
-        return Math.max(0, Math.min(100, percentage))
-    }
-}
+data class Text(val title: String, val content: String, val level: Level, val percentage: Int, val timestamp: Long)
 
 enum class Level(val levelNumber: Int) { BRONZE(0), SILVER(10), GOLD(20) }
 

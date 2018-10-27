@@ -94,7 +94,7 @@ class ExerciseAdapter(initialFontSize: Float, val listener: AdapterListener) : R
 
         fun bind(text: String, fontSize: Float) = with(itemView) {
             item_exercise_text.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize)
-            item_exercise_text.text = text
+            item_exercise_text.text = text.replace('\n', '⏎').replace('\r', '⏎')
         }
 
     }

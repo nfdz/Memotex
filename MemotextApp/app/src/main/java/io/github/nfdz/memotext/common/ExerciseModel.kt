@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 
-data class Exercise(val elements: List<ExerciseElement>) : Parcelable {
+class Exercise(val elements: List<ExerciseElement>) : Parcelable {
 
     fun countSlots() = elements.count { it is SlotElement }
 
@@ -99,3 +99,5 @@ class ExerciseAnswers(val answers: Map<Int,String>) : Parcelable {
         }
     }
 }
+
+class ExerciseResult(val title: String, val level: Level, val percentage: Int, val textSolution: CharSequence)

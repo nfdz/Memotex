@@ -5,6 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="text_deleted">Text deleted</string>
     <string name="text_deleted_action">Undo</string>
+    <string name="text_change_level_title">Level</string>
     <string name="level_bronze_msg">Level bronze (easy)</string>
     <string name="level_silver_msg">Level silver (medium)</string>
     <string name="level_gold_msg">Level gold (hard)</string>
@@ -21,6 +22,7 @@
     <string name="add_text_title">Add text</string>
     <string name="edit_text_title">Edit text</string>
     <string name="text_title_hint">Title</string>
+    <string name="text_title_hint_unmodifiable">Title (unmodifiable)</string>
     <string name="text_content_hint">Content</string>
     <string name="editor_save_button">Save</string>
     <string name="editor_save_title_error">The title is the same as that of another text, please use another</string>
@@ -29,7 +31,7 @@
     <string name="exercise_title">Exercise</string>
     <string name="exercise_font_bigger_description">Increase font size</string>
     <string name="exercise_font_smaller_description">Decrease font size</string>
-    <string name="exercise_change_answer_ok">Change</string>
+    <string name="exercise_prepare_error">Sorry, it was not able to create an exercise for this text :(</string>
 
     <!-- Strings related to Settings -->
     <string name="pref_header_level">Level</string>

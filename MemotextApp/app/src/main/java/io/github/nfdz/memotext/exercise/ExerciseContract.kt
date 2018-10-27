@@ -2,6 +2,7 @@ package io.github.nfdz.memotext.exercise
 
 import io.github.nfdz.memotext.common.Exercise
 import io.github.nfdz.memotext.common.ExerciseAnswers
+import io.github.nfdz.memotext.common.ExerciseResult
 import io.github.nfdz.memotext.common.Level
 
 interface ExerciseView {
@@ -11,7 +12,8 @@ interface ExerciseView {
     fun showChangeAnswerDialog(position: Int, currentAnswer: String)
     fun increaseFontSize()
     fun decreaseFontSize()
-    fun navigateToResult(exercise: Exercise, answers: ExerciseAnswers)
+    fun navigateToResult(result: ExerciseResult)
+    fun navigateToError()
 }
 
 interface ExercisePresenter {
@@ -25,5 +27,6 @@ interface ExercisePresenter {
 }
 
 interface ExerciseInteractor {
-    fun prepareExercise(content: String, level: Level, callback: (exercise: Exercise) -> Unit)
+    fun prepareExercise(content: String, level: Level, callback: (exercise: Exercise) -> Unit, error: () -> Unit)
+    fun checkAnswers(title: String, level: Level, exercise: Exercise, exerciseAnswers: ExerciseAnswers, callback: (exerciseResult: ExerciseResult) -> Unit)
 }

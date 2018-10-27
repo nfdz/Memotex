@@ -12,7 +12,7 @@ class ExerciseAlgorithmImpl : ExerciseAlgorithm {
         // Split text
         val rawElementsValues = mutableListOf<String>()
         val validElementsIndexes = mutableListOf<Int>()
-        val words = text.trim().split(Regex("\\s"))
+        val words = text.trim().split(" ")
         words.forEach { word ->
             rawElementsValues.add(word)
             if (isWordValid(word)) {

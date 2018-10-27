@@ -39,7 +39,7 @@ class HomeInteractorImpl(val context: Context) : HomeInteractor {
         // TODO
         doAsync {
             if (cachedTexts == null) {
-                cachedTexts = (1..90).flatMap { listOf(Text("Test title $it", "Lorem .e:f- w-w_a sa\n{} [] $% \n ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets", Level.SILVER, 10, 0L))}
+                cachedTexts = (1..90).flatMap { listOf(Text("Test title $it lorem ipsum apsala tumala torpaz camwxmi", "Lorem .e:f- w-w_a sa\n{} [] $% \n ipsum is simply dummy \rtext of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets", Level.SILVER, 10, 0L))}
             }
             when(getSortCriteria()) {
                 SortCriteria.TITLE -> cachedTexts!!.sortedBy { it.title }
@@ -51,6 +51,10 @@ class HomeInteractorImpl(val context: Context) : HomeInteractor {
                 callback(cachedTexts!!)
             }
         }
+    }
+
+    override fun changeTextLevel(text: Text, level: Level, callback: () -> Unit) {
+        // TODO
     }
 
 }

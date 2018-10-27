@@ -77,54 +77,29 @@ class SettingsActivity : AppCompatPreferenceActivity() {
 
         private fun setupPreferences() {
             val bronzeWordsKey = getString(R.string.pref_lvl_bronze_words_key)
-            val bronzeLettersKey = getString(R.string.pref_lvl_bronze_letters_key)
             val silverWordsKey = getString(R.string.pref_lvl_silver_words_key)
-            val silverLettersKey = getString(R.string.pref_lvl_silver_letters_key)
             val goldWordsKey = getString(R.string.pref_lvl_gold_words_key)
-            val goldLettersKey = getString(R.string.pref_lvl_gold_letters_key)
             val bronzeWordsDefault = getString(R.string.pref_lvl_bronze_words_default)
-            val bronzeLettersDefault = getString(R.string.pref_lvl_bronze_letters_default)
             val silverWordsDefault = getString(R.string.pref_lvl_silver_words_default)
-            val silverLettersDefault = getString(R.string.pref_lvl_silver_letters_default)
             val goldWordsDefault = getString(R.string.pref_lvl_gold_words_default)
-            val goldLettersDefault = getString(R.string.pref_lvl_gold_letters_default)
-            bindPreferences(bronzeWordsKey, bronzeWordsDefault,
-                bronzeLettersKey, bronzeLettersDefault,
-                silverWordsKey, silverWordsDefault,
-                silverLettersKey, silverLettersDefault,
-                goldWordsKey, goldWordsDefault,
-                goldLettersKey, goldLettersDefault)
+            bindPreferences(bronzeWordsKey, bronzeWordsDefault, silverWordsKey, silverWordsDefault, goldWordsKey, goldWordsDefault)
             findPreference(getString(R.string.pref_lvl_restore_default_key)).setOnPreferenceClickListener {
                 PreferenceManager.getDefaultSharedPreferences(it.context).edit()
                     .putString(bronzeWordsKey, bronzeWordsDefault)
-                    .putString(bronzeLettersKey, bronzeLettersDefault)
                     .putString(silverWordsKey, silverWordsDefault)
-                    .putString(silverLettersKey, silverLettersDefault)
                     .putString(goldWordsKey, goldWordsDefault)
-                    .putString(goldLettersKey, goldLettersDefault)
                     .commit()
-                bindPreferences(bronzeWordsKey, bronzeWordsDefault,
-                    bronzeLettersKey, bronzeLettersDefault,
-                    silverWordsKey, silverWordsDefault,
-                    silverLettersKey, silverLettersDefault,
-                    goldWordsKey, goldWordsDefault,
-                    goldLettersKey, goldLettersDefault)
+                bindPreferences(bronzeWordsKey, bronzeWordsDefault, silverWordsKey, silverWordsDefault, goldWordsKey, goldWordsDefault)
                 true
             }
         }
 
         private fun bindPreferences(bronzeWordsKey: String, bronzeWordsDefault: String,
-                                    bronzeLettersKey: String, bronzeLettersDefault: String,
                                     silverWordsKey: String, silverWordsDefault: String,
-                                    silverLettersKey: String, silverLettersDefault: String,
-                                    goldWordsKey: String, goldWordsDefault: String,
-                                    goldLettersKey: String, goldLettersDefault: String) {
+                                    goldWordsKey: String, goldWordsDefault: String) {
             bindPreferenceSummaryToValue(findPreference(bronzeWordsKey), bronzeWordsDefault)
-            bindPreferenceSummaryToValue(findPreference(bronzeLettersKey), bronzeLettersDefault)
             bindPreferenceSummaryToValue(findPreference(silverWordsKey), silverWordsDefault)
-            bindPreferenceSummaryToValue(findPreference(silverLettersKey), silverLettersDefault)
             bindPreferenceSummaryToValue(findPreference(goldWordsKey), goldWordsDefault)
-            bindPreferenceSummaryToValue(findPreference(goldLettersKey), goldLettersDefault)
         }
 
         private fun bindPreferenceSummaryToValue(preference: Preference, defaultValue: String) {

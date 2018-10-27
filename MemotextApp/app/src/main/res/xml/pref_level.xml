@@ -18,18 +18,6 @@
             android:key="@string/pref_lvl_bronze_words_key"
             android:title="@string/pref_lvl_words_title" />
 
-        <EditTextPreference
-            android:capitalize="words"
-            android:inputType="number"
-            android:maxLength="2"
-            android:maxLines="1"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:defaultValue="@string/pref_lvl_bronze_letters_default"
-            android:textAlignment="center"
-            android:key="@string/pref_lvl_bronze_letters_key"
-            android:title="@string/pref_lvl_letters_title" />
-
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/level_silver">
@@ -46,18 +34,6 @@
             android:key="@string/pref_lvl_silver_words_key"
             android:title="@string/pref_lvl_words_title" />
 
-        <EditTextPreference
-            android:capitalize="words"
-            android:inputType="number"
-            android:maxLength="2"
-            android:maxLines="1"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:defaultValue="@string/pref_lvl_silver_letters_default"
-            android:textAlignment="center"
-            android:key="@string/pref_lvl_silver_letters_key"
-            android:title="@string/pref_lvl_letters_title" />
-
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/level_gold">
@@ -73,18 +49,6 @@
             android:textAlignment="center"
             android:key="@string/pref_lvl_gold_words_key"
             android:title="@string/pref_lvl_words_title" />
-
-        <EditTextPreference
-            android:capitalize="words"
-            android:inputType="number"
-            android:maxLength="2"
-            android:maxLines="1"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:defaultValue="@string/pref_lvl_gold_letters_default"
-            android:textAlignment="center"
-            android:key="@string/pref_lvl_gold_letters_key"
-            android:title="@string/pref_lvl_letters_title" />
 
     </PreferenceCategory>
 

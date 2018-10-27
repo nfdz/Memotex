@@ -61,9 +61,9 @@ class TextsAdapter(data: List<Text> = emptyList(), val listener: AdapterListener
             tv_text_title.text = item.title
             tv_success_percentage.text = "${item.percentage.toString()}%"
             iv_level_trophy.contentDescription = when (item.level) {
-                Level.BRONZE -> context.getString(R.string.level_bronze_msg)
-                Level.SILVER -> context.getString(R.string.level_silver_msg)
-                Level.GOLD -> context.getString(R.string.level_gold_msg)
+                Level.BRONZE -> context.getString(R.string.level_bronze)
+                Level.SILVER -> context.getString(R.string.level_silver)
+                Level.GOLD -> context.getString(R.string.level_gold)
             }
             val color = when (item.level) {
                 Level.BRONZE -> ContextCompat.getColor(context, R.color.bronzeColor)

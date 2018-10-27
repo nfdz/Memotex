@@ -107,9 +107,9 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
     }
 
     override fun askLevel(text: Text) {
-        val options = listOf<String>(getString(R.string.level_bronze_msg),
-            getString(R.string.level_silver_msg),
-            getString(R.string.level_gold_msg))
+        val options = listOf<String>(getString(R.string.level_bronze),
+            getString(R.string.level_silver),
+            getString(R.string.level_gold))
         val checkedItem = when(text.level) {
             Level.BRONZE -> 0
             Level.SILVER -> 1

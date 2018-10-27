@@ -6,9 +6,6 @@
     <string name="text_deleted">Text deleted</string>
     <string name="text_deleted_action">Undo</string>
     <string name="text_change_level_title">Level</string>
-    <string name="level_bronze_msg">Level bronze (easy)</string>
-    <string name="level_silver_msg">Level silver (medium)</string>
-    <string name="level_gold_msg">Level gold (hard)</string>
     <string name="level_bronze">Bronze/Easy</string>
     <string name="level_silver">Silver/Medium</string>
     <string name="level_gold">Gold/Hard</string>
@@ -48,21 +45,14 @@
     <string name="url_repo_error">Cannot open browser app</string>
 
     <string name="pref_lvl_words_title">Words to hide</string>
-    <string name="pref_lvl_letters_title">Word letters to hide</string>
     <string name="pref_lvl_bronze_words_key" translatable="false">bronze_words</string>
-    <string name="pref_lvl_bronze_letters_key" translatable="false">bronze_letters</string>
     <string name="pref_lvl_silver_words_key" translatable="false">silver_words</string>
-    <string name="pref_lvl_silver_letters_key" translatable="false">silver_letters</string>
     <string name="pref_lvl_gold_words_key" translatable="false">gold_words</string>
-    <string name="pref_lvl_gold_letters_key" translatable="false">gold_letters</string>
     <string name="pref_lvl_restore_default_key" translatable="false">restore_default</string>
     <string name="pref_lvl_restore_default_title">Restore default values</string>
     <string name="pref_lvl_bronze_words_default" translatable="false">5</string>
-    <string name="pref_lvl_bronze_letters_default" translatable="false">10</string>
     <string name="pref_lvl_silver_words_default" translatable="false">15</string>
-    <string name="pref_lvl_silver_letters_default" translatable="false">20</string>
     <string name="pref_lvl_gold_words_default" translatable="false">30</string>
-    <string name="pref_lvl_gold_letters_default" translatable="false">40</string>
 
     <string name="pref_sort_criteria_key" translatable="false">sort_criteria</string>
     <string name="pref_sort_criteria_default" translatable="false">TITLE</string>

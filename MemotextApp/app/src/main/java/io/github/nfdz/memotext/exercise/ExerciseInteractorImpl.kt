@@ -10,27 +10,15 @@ class ExerciseInteractorImpl(val context: Context) : ExerciseInteractor {
 
     override fun prepareExercise(content: String, level: Level, success: (exercise: Exercise) -> Unit, error: () -> Unit) {
 
-        val settings: Pair<String,String> = when (level) {
-            Level.BRONZE -> {
-                Pair(context.getStringFromPreferences(R.string.pref_lvl_bronze_words_key, R.string.pref_lvl_bronze_words_default),
-                    context.getStringFromPreferences(R.string.pref_lvl_bronze_letters_key, R.string.pref_lvl_bronze_letters_default))
-            }
-            Level.SILVER -> {
-                Pair(context.getStringFromPreferences(R.string.pref_lvl_silver_words_key, R.string.pref_lvl_silver_words_default),
-                    context.getStringFromPreferences(R.string.pref_lvl_silver_letters_key, R.string.pref_lvl_silver_letters_default))
-            }
-            Level.GOLD -> {
-                Pair(context.getStringFromPreferences(R.string.pref_lvl_gold_words_key, R.string.pref_lvl_gold_words_default),
-                    context.getStringFromPreferences(R.string.pref_lvl_gold_letters_key, R.string.pref_lvl_gold_letters_default))
-            }
-        }
-
-        val wordsToHide = settings.first.toInt()
-        val lettersToHide = settings.second.toInt()
+        val wordsToHide = when(level) {
+            Level.BRONZE -> { context.getStringFromPreferences(R.string.pref_lvl_bronze_words_key, R.string.pref_lvl_bronze_words_default) }
+            Level.SILVER -> { context.getStringFromPreferences(R.string.pref_lvl_silver_words_key, R.string.pref_lvl_silver_words_default) }
+            Level.GOLD -> { context.getStringFromPreferences(R.string.pref_lvl_gold_words_key, R.string.pref_lvl_gold_words_default) }
+        }.toInt()
 
         doAsync {
             try {
-                val result = ExerciseAlgorithmImpl().execute(content, wordsToHide, lettersToHide)
+                val result = ExerciseAlgorithmImpl().execute(content, wordsToHide)
                 doMainThread { success(result) }
             } catch (e: Exception) {
                 Timber.e(e, "Cannot generate exercise")

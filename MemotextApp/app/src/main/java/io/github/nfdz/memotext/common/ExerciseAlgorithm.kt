@@ -3,12 +3,12 @@ package io.github.nfdz.memotext.common
 import java.util.*
 
 interface ExerciseAlgorithm {
-    fun execute(text: String, wordsToHidePercent: Int, lettersToHidePercent: Int): Exercise
+    fun execute(text: String, wordsToHidePercent: Int): Exercise
 }
 
 class ExerciseAlgorithmImpl : ExerciseAlgorithm {
 
-    override fun execute(text: String, wordsToHidePercent: Int, lettersToHidePercent: Int): Exercise {
+    override fun execute(text: String, wordsToHidePercent: Int): Exercise {
         // Split text
         val rawElementsValues = mutableListOf<String>()
         val validElementsIndexes = mutableListOf<Int>()

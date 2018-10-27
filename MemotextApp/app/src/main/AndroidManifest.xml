@@ -39,7 +39,6 @@
         <activity
             android:name=".exercise.ExerciseActivity"
             android:label="@string/exercise_title"
-            android:windowSoftInputMode="adjustPan|adjustResize"
             android:parentActivityName=".home.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

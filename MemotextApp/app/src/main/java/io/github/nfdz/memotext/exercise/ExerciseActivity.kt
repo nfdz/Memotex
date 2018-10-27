@@ -3,13 +3,17 @@ package io.github.nfdz.memotext.exercise
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.LinearLayoutManager
+import android.text.InputType
+import android.view.Gravity
 import android.view.View
-import android.widget.LinearLayout
+import android.widget.EditText
+import android.widget.FrameLayout
 import io.github.nfdz.memotext.R
 import io.github.nfdz.memotext.common.*
 import kotlinx.android.synthetic.main.activity_exercise.*
@@ -101,24 +105,36 @@ class ExerciseActivity : AppCompatActivity(), ExerciseView, AdapterListener {
     }
 
     override fun showChangeAnswerDialog(position: Int, currentAnswer: String) {
+        val container = FrameLayout(this)
+        container.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+        val padding = resources.getDimensionPixelSize(R.dimen.activity_margin)
+        container.setPadding(padding, padding, padding, padding)
         val input = AppCompatEditText(this)
         input.maxLines = 1
-        input.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        AlertDialog.Builder(this).apply {
-            title = getString(R.string.exercise_change_answer_title)
-            input.append(currentAnswer)
-            setView(input)
+        input.gravity = Gravity.CENTER
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) input.textAlignment = EditText.TEXT_ALIGNMENT_CENTER
+        input.inputType = InputType.TYPE_CLASS_TEXT
+        input.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+        input.append(currentAnswer)
+        container.addView(input)
+        val dialog = AlertDialog.Builder(this).apply {
+            setView(container)
         }.setNegativeButton(android.R.string.cancel) { dialog: DialogInterface, _: Int ->
             dialog.cancel()
         }.setPositiveButton(R.string.exercise_change_answer_ok) { dialog: DialogInterface, _: Int ->
             adapter.putAnswer(position, input.text.toString())
             dialog.dismiss()
         }.show()
+        input.onNextOrEnterListener {
+            adapter.putAnswer(position, input.text.toString())
+            dialog.dismiss()
+        }
+        input.post { input.showKeyboard() }
     }
 
-//    override fun onProgressChanged(progress: Int) {
-//        presenter.onProgressChanged(progress)
-//    }
+    override fun onProgressChanged(progress: Int) {
+        presenter.onProgressChanged(progress)
+    }
 
     override fun onChangeAnswerClick(position: Int, currentAnswer: String) {
         presenter.onChangeAnswerClick(position, currentAnswer)

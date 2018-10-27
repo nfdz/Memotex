@@ -5,6 +5,9 @@ import android.os.Parcelable
 
 
 data class Exercise(val elements: List<ExerciseElement>) : Parcelable {
+
+    fun countSlots() = elements.count { it is SlotElement }
+
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest?.writeList(elements)
     }

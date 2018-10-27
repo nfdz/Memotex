@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.item_exercise_text.view.*
 import kotlin.properties.Delegates
 
 interface AdapterListener {
+    fun onProgressChanged(progress: Int)
     fun onChangeAnswerClick(position: Int, currentAnswer: String)
 }
 
@@ -19,10 +20,13 @@ class ExerciseAdapter(exercise: Exercise = Exercise(emptyList()), val listener: 
     private val TEXT_VIEW_TYPE = 1
     private val SLOT_VIEW_TYPE = 2
 
-    var exercise by Delegates.observable(exercise) { _, _, _ ->
+    var exercise by Delegates.observable(exercise) { _, _, newValue ->
+        slotsToFill = newValue.countSlots()
         notifyDataSetChanged()
+        notifyProgress()
     }
 
+    private var slotsToFill = 0
     private val answers: MutableMap<Int,String> = mutableMapOf()
 
     fun getExerciseAnswers() = ExerciseAnswers(answers.toMap())
@@ -30,12 +34,19 @@ class ExerciseAdapter(exercise: Exercise = Exercise(emptyList()), val listener: 
         exerciseAnswers?.let {
             answers.clear()
             answers.putAll(exerciseAnswers.answers)
+            notifyProgress()
+            notifyDataSetChanged()
         }
     }
 
     fun putAnswer(position: Int, answer: String) {
-        answers.put(position, answer)
-        notifyDataSetChanged()
+        answers[position] = answer
+        notifyItemChanged(position)
+        notifyProgress()
+    }
+
+    private fun notifyProgress() {
+        listener.onProgressChanged(Math.ceil(100*answers.size.toDouble()/slotsToFill).toInt())
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

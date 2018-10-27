@@ -29,7 +29,6 @@
     <string name="exercise_title">Exercise</string>
     <string name="exercise_font_bigger_description">Increase font size</string>
     <string name="exercise_font_smaller_description">Decrease font size</string>
-    <string name="exercise_change_answer_title">Change answer</string>
     <string name="exercise_change_answer_ok">Change</string>
 
     <!-- Strings related to Settings -->

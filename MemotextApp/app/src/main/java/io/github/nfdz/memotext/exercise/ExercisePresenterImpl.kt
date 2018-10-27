@@ -1,6 +1,7 @@
 package io.github.nfdz.memotext.exercise
 
 import io.github.nfdz.memotext.common.Exercise
+import io.github.nfdz.memotext.common.ExerciseAnswers
 import io.github.nfdz.memotext.common.Level
 
 class ExercisePresenterImpl(var view: ExerciseView?, var interactor: ExerciseInteractor?) : ExercisePresenter {
@@ -42,8 +43,8 @@ class ExercisePresenterImpl(var view: ExerciseView?, var interactor: ExerciseInt
         view?.setExerciseProgress(progress)
     }
 
-    override fun onCheckExerciseClick() {
-        // TODO
+    override fun onCheckExerciseClick(exercise: Exercise, answers: ExerciseAnswers) {
+        view?.navigateToResult(exercise, answers)
     }
 
 

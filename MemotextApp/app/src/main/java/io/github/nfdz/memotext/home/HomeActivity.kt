@@ -22,8 +22,8 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
 
     private val EDITOR_REQUEST_CODE = 44078
 
-    val presenter: HomePresenter by lazy { HomePresenterImpl(this, HomeInteractorImpl(this)) }
-    val adapter = TextsAdapter(listener = this)
+    private val presenter: HomePresenter by lazy { HomePresenterImpl(this, HomeInteractorImpl(this)) }
+    private val adapter = TextsAdapter(listener = this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

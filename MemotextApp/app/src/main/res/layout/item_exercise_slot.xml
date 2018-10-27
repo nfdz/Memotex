@@ -8,10 +8,10 @@
     <TextView
         android:id="@+id/item_exercise_slot"
         android:layout_width="wrap_content"
-        android:minWidth="120dp"
+        android:minWidth="@dimen/exercise_default_slot_min_width"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:textSize="28sp"
+        android:textSize="@dimen/exercise_default_font_size"
         tools:text="Lorem"
         android:background="?attr/selectableItemBackground"
         android:textAlignment="center"

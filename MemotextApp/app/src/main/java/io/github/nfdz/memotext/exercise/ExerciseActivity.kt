@@ -36,8 +36,11 @@ private val EXTRA_EXERCISE = "exercise"
 
 class ExerciseActivity : AppCompatActivity(), ExerciseView, AdapterListener {
 
-    val presenter: ExercisePresenter by lazy { ExercisePresenterImpl(this, ExerciseInteractorImpl(this)) }
-    val adapter = ExerciseAdapter(listener = this)
+    private val presenter: ExercisePresenter by lazy { ExercisePresenterImpl(this, ExerciseInteractorImpl(this)) }
+    private val adapter: ExerciseAdapter by lazy { ExerciseAdapter(resources.getInteger(R.integer.exercise_default_font_size_sp).toFloat(), this) }
+    private val minFontSize: Int by lazy { resources.getInteger(R.integer.exercise_min_font_size_sp) }
+    private val maxFontSize: Int by lazy { resources.getInteger(R.integer.exercise_max_font_size_sp) }
+    private val fontSizeDelta = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +70,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseView, AdapterListener {
         exercise_rv.adapter = adapter
         exercise_iv_font_big.setOnClickListener { presenter.onIncreaseFontSizeClick() }
         exercise_iv_font_small.setOnClickListener { presenter.onDecreaseFontSizeClick() }
-        exercise_fab_check.setOnClickListener { presenter.onCheckExerciseClick() }
+        exercise_fab_check.setOnClickListener { presenter.onCheckExerciseClick(adapter.exercise, adapter.getExerciseAnswers()) }
     }
 
     override fun onDestroy() {
@@ -93,14 +96,18 @@ class ExerciseActivity : AppCompatActivity(), ExerciseView, AdapterListener {
     }
 
     override fun increaseFontSize() {
-        // TODO
+        if (adapter.fontSize < maxFontSize) {
+            adapter.fontSize = adapter.fontSize + fontSizeDelta
+        }
     }
 
     override fun decreaseFontSize() {
-        // TODO
+        if (adapter.fontSize > minFontSize) {
+            adapter.fontSize = adapter.fontSize - fontSizeDelta
+        }
     }
 
-    override fun navigateToResult() {
+    override fun navigateToResult(exercise: Exercise, answers: ExerciseAnswers) {
         // TODO
     }
 

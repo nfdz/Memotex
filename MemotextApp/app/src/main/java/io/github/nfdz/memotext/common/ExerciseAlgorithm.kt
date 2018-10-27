@@ -15,7 +15,7 @@ class ExerciseAlgorithmImpl : ExerciseAlgorithm {
         val words = text.trim().split(Regex("\\s"))
         words.forEach { word ->
             rawElementsValues.add(word)
-            if (!word.matches(Regex("\\W"))) {
+            if (isWordValid(word)) {
                 validElementsIndexes.add(rawElementsValues.size - 1)
             }
         }
@@ -27,8 +27,11 @@ class ExerciseAlgorithmImpl : ExerciseAlgorithm {
         val rnd = Random()
         do {
             loopCounter++
-            val wordToHide = rnd.nextInt(validElementsIndexes.size)
-            if (!wordsToHideIndexes.contains(wordToHide)) {
+            val wordToHideIndex = rnd.nextInt(validElementsIndexes.size)
+            val wordToHide = validElementsIndexes[wordToHideIndex]
+            if (!wordsToHideIndexes.contains(wordToHide) &&
+                    !wordsToHideIndexes.contains(wordToHide+1) &&
+                    !wordsToHideIndexes.contains(wordToHide-1)) {
                 wordsToHideIndexes.add(wordToHide)
             }
         } while (wordsToHideIndexes.size < wordsToHide && loopCounter < loopLimit)
@@ -74,6 +77,15 @@ class ExerciseAlgorithmImpl : ExerciseAlgorithm {
             }
         }
         return Exercise(exerciseList.toList())
+    }
+
+    private fun isWordValid(word: String): Boolean {
+        for (c in word) {
+            if ((c !in 'a'..'z') && (c !in 'A'..'Z')) {
+                return false
+            }
+        }
+        return true
     }
 
     class TextElementBuilder(var text: String) {

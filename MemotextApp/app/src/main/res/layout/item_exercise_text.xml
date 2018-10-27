@@ -6,5 +6,5 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
-    android:textSize="28sp"
+    android:textSize="@dimen/exercise_default_font_size"
     tools:text="Lorem ipsum" />

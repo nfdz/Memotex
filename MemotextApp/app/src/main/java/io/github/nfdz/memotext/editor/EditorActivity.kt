@@ -33,7 +33,7 @@ private val EXTRA_TEXT_CONTENT = "text_content"
 
 class EditorActivity : AppCompatActivity(), EditorView {
 
-    val presenter: EditorPresenter by lazy { EditorPresenterImpl(this, EditorInteractorImpl()) }
+    private val presenter: EditorPresenter by lazy { EditorPresenterImpl(this, EditorInteractorImpl()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

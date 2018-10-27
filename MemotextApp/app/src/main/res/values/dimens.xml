@@ -1,4 +1,8 @@
 <resources>
+
     <dimen name="activity_margin">16dp</dimen>
     <dimen name="fab_margin">@dimen/activity_margin</dimen>
+    <dimen name="exercise_default_font_size">24sp</dimen>
+    <dimen name="exercise_default_slot_min_width">80dp</dimen>
+
 </resources>

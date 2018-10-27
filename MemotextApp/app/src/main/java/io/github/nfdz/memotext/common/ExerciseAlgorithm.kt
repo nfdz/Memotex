@@ -54,7 +54,7 @@ class ExerciseAlgorithmImpl : ExerciseAlgorithm {
                     if (nextTextElement < rawExercise.size) {
                         val nextElement = rawExercise[nextTextElement]
                         if (nextElement is TextElementBuilder) {
-                            currentElement.text += " $nextElement"
+                            currentElement.text += " ${nextElement.text}"
                             rawExercise.remove(rawExercise[i + 1]) // whitespace
                             rawExercise.remove(nextElement) // whitespace
                             wasOptimizied = true

@@ -1,51 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/editor_root"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_margin"
-        android:layout_marginRight="@dimen/activity_margin"
-        android:layout_marginTop="@dimen/activity_margin">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/editor_tie_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/textColorDark"
-            android:maxLines="1"
-            android:maxLength="80"
-            android:hint="@string/text_title_hint" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
+    <ScrollView
+        android:orientation="vertical"
+        android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginLeft="@dimen/activity_margin"
-        android:layout_marginRight="@dimen/activity_margin"
-        android:layout_marginTop="@dimen/activity_margin">
+        android:layout_weight="1">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/editor_tie_content"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/textColorDark"
-            android:maxLength="1024"
-            android:inputType="textMultiLine"
-            android:maxLines="200"
-            android:overScrollMode="always"
-            android:scrollbarStyle="insideInset"
-            android:scrollbars="vertical"
-            android:hint="@string/text_content_hint" />
+            android:layout_height="wrap_content">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_margin"
+                android:layout_marginRight="@dimen/activity_margin"
+                android:layout_marginTop="@dimen/activity_margin">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editor_tie_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/textColorDark"
+                    android:maxLines="1"
+                    android:maxLength="80"
+                    android:hint="@string/text_title_hint" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_margin"
+                android:layout_marginRight="@dimen/activity_margin"
+                android:layout_marginTop="@dimen/activity_margin">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editor_tie_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorDark"
+                    android:maxLength="1024"
+                    android:inputType="textMultiLine"
+                    android:maxLines="200"
+                    android:hint="@string/text_content_hint" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/btn_start_load"
@@ -53,8 +66,6 @@
         android:layout_height="wrap_content"
         android:text="@string/editor_save_button"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:textColor="@color/textColorLight"
-        android:layout_margin="@dimen/activity_margin" />
-
+        android:textColor="@color/textColorLight" />
 
 </LinearLayout>

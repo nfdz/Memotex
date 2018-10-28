@@ -1,9 +1,14 @@
 package io.github.nfdz.memotex
 
 import android.app.Application
+import com.vicpin.krealmextensions.RealmConfigStore
+import io.github.nfdz.memotex.common.TextRealm
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import timber.log.Timber
+import io.realm.RealmObjectSchema
+
+
 
 
 class MemotexApp : Application() {

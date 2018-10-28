@@ -22,7 +22,7 @@
     <string name="text_title_hint_unmodifiable">Title (unmodifiable)</string>
     <string name="text_content_hint">Content</string>
     <string name="editor_save_button">Save</string>
-    <string name="editor_save_title_error">The title is the same as that of another text, please use another</string>
+    <string name="editor_save_title_error">The title is the same as that of another text, please use a new one</string>
     <string name="editor_save_error">Cannot save text</string>
 
     <string name="exercise_title">Exercise</string>

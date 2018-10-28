@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import io.github.nfdz.memotex.R
 import io.github.nfdz.memotex.common.Text
 import io.github.nfdz.memotex.common.getStringExtra
@@ -55,6 +57,15 @@ class EditorActivity : AppCompatActivity(), EditorView {
             editor_tie_title.isFocusable = false
             editor_tie_title.isCursorVisible = false
             editor_tie_content.setText(intent.getStringExtra(EXTRA_TEXT_CONTENT, ""))
+        } else {
+            editor_tie_title.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                    btn_start_load.isEnabled = !(s?.isEmpty() ?: true)
+                }
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            })
+            btn_start_load.isEnabled = !(editor_tie_title.text?.isEmpty() ?: true)
         }
         btn_start_load.setOnClickListener { presenter.onSaveClick(editor_tie_title.text.toString(), editor_tie_content.text.toString()) }
     }

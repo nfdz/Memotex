@@ -61,14 +61,14 @@ class TextsAdapter(data: List<Text> = emptyList(), val listener: AdapterListener
             tv_text_title.text = item.title
             tv_success_percentage.text = "${item.percentage.toString()}%"
             iv_level_trophy.contentDescription = when (item.level) {
-                Level.BRONZE -> context.getString(R.string.level_bronze)
-                Level.SILVER -> context.getString(R.string.level_silver)
-                Level.GOLD -> context.getString(R.string.level_gold)
+                Level.EASY -> context.getString(R.string.level_easy)
+                Level.MEDIUM -> context.getString(R.string.level_medium)
+                Level.HARD -> context.getString(R.string.level_hard)
             }
             val color = when (item.level) {
-                Level.BRONZE -> ContextCompat.getColor(context, R.color.bronzeColor)
-                Level.SILVER -> ContextCompat.getColor(context, R.color.silverColor)
-                Level.GOLD -> ContextCompat.getColor(context, R.color.goldColor)
+                Level.EASY -> ContextCompat.getColor(context, R.color.easyColor)
+                Level.MEDIUM -> ContextCompat.getColor(context, R.color.mediumColor)
+                Level.HARD -> ContextCompat.getColor(context, R.color.hardColor)
             }
             iv_level_trophy.setColorFilter(color, android.graphics.PorterDuff.Mode.SRC_ATOP)
             iv_level_trophy.setOnClickListener { listener.onLevelIconClick(item) }

@@ -80,21 +80,21 @@ fun Context.setStringInPreferences(@StringRes key: Int, value: String) {
 }
 
 fun Context.showAskLevelDialog(level: Level, callback: (level: Level) -> Unit) {
-    val options = listOf<String>(getString(R.string.level_bronze),
-        getString(R.string.level_silver),
-        getString(R.string.level_gold))
+    val options = listOf<String>(getString(R.string.level_easy),
+        getString(R.string.level_medium),
+        getString(R.string.level_hard))
     val checkedItem = when(level) {
-        Level.BRONZE -> 0
-        Level.SILVER -> 1
-        Level.GOLD -> 2
+        Level.EASY -> 0
+        Level.MEDIUM -> 1
+        Level.HARD -> 2
     }
     AlertDialog.Builder(this).apply {
         setTitle(R.string.text_change_level_title)
     }.setSingleChoiceItems(options.toTypedArray(), checkedItem) { dialog, which ->
         callback(when(which) {
-            1 -> Level.SILVER
-            2 ->Level.GOLD
-            else -> Level.BRONZE
+            1 -> Level.MEDIUM
+            2 ->Level.HARD
+            else -> Level.EASY
         })
         dialog.dismiss()
     }.show()

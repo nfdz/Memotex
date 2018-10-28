@@ -6,7 +6,7 @@ class ResultPresenterImpl(var view: ResultView?, var interactor: ResultInteracto
 
     var title = ""
     var content = ""
-    var level = Level.BRONZE
+    var level = Level.EASY
     var percentage = 0
 
     override fun onCreate(title: String, content: String, level: Level, percentage: Int, textSolution: CharSequence) {

@@ -8,9 +8,9 @@ class ResultInteractorImpl(val context: Context) : ResultInteractor {
 
     override fun getTextToShare(title: String, level: Level, percentage: Int, callback: (String) -> Unit) {
         val levelText: String = when(level) {
-            Level.BRONZE -> { context.getString(R.string.level_bronze) }
-            Level.SILVER -> { context.getString(R.string.level_silver) }
-            Level.GOLD -> { context.getString(R.string.level_gold) }
+            Level.EASY -> { context.getString(R.string.level_easy) }
+            Level.MEDIUM -> { context.getString(R.string.level_medium) }
+            Level.HARD -> { context.getString(R.string.level_hard) }
         }
         callback(context.getString(R.string.result_share_template, title, percentage, levelText))
     }

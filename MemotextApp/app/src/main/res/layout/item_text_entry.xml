@@ -45,7 +45,7 @@
         android:layout_height="38dp"
         android:padding="6dp"
         app:srcCompat="@drawable/ic_trophy_light"
-        tools:tint="@color/bronzeColor"
+        tools:tint="@color/easyColor"
         android:background="?attr/selectableItemBackground"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -41,7 +41,7 @@ class ResultActivity : AppCompatActivity(), ResultView {
         setupView()
         presenter.onCreate(intent.getStringExtra(EXTRA_RESULT_TITLE, ""),
             intent.getStringExtra(EXTRA_RESULT_CONTENT, ""),
-            Level.valueOf(intent.getStringExtra(EXTRA_RESULT_LEVEL,  Level.BRONZE.name)),
+            Level.valueOf(intent.getStringExtra(EXTRA_RESULT_LEVEL,  Level.EASY.name)),
             intent.getIntExtra(EXTRA_RESULT_PERCENTAGE, 0),
             intent.getCharSequenceExtra(EXTRA_RESULT_SOLUTION) ?: "")
     }
@@ -68,9 +68,9 @@ class ResultActivity : AppCompatActivity(), ResultView {
         result_tv_solution.text = textSolution
         result_tv_percentage.text = "${percentage.toString()}%"
         result_tv_level.text = when (level) {
-            Level.BRONZE -> getString(R.string.level_bronze)
-            Level.SILVER -> getString(R.string.level_silver)
-            Level.GOLD -> getString(R.string.level_gold)
+            Level.EASY -> getString(R.string.level_easy)
+            Level.MEDIUM -> getString(R.string.level_medium)
+            Level.HARD -> getString(R.string.level_hard)
         }
     }
 

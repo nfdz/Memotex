@@ -12,8 +12,8 @@
     <color name="textColorDark">@color/dark</color>
     <color name="textColorGray">#666666</color>
 
-    <color name="goldColor">#D3AF37</color>
-    <color name="silverColor">#A8A9AD</color>
-    <color name="bronzeColor">#DE6903</color>
+    <color name="hardColor">#D3AF37</color>
+    <color name="mediumColor">#A8A9AD</color>
+    <color name="easyColor">#DE6903</color>
 
 </resources>

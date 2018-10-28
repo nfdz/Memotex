@@ -7,6 +7,6 @@ class TextRealm(@PrimaryKey var title: String, var content: String, var level: I
 
 data class Text(val title: String, val content: String, val level: Level, val percentage: Int, val timestamp: Long)
 
-enum class Level(val levelNumber: Int) { BRONZE(0), SILVER(10), GOLD(20) }
+enum class Level { EASY, MEDIUM, HARD }
 
 enum class SortCriteria { TITLE, LEVEL, PERCENTAGE, DATE }

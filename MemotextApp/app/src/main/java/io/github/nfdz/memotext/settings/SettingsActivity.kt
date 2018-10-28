@@ -76,30 +76,30 @@ class SettingsActivity : AppCompatPreferenceActivity() {
         }
 
         private fun setupPreferences() {
-            val bronzeWordsKey = getString(R.string.pref_lvl_bronze_words_key)
-            val silverWordsKey = getString(R.string.pref_lvl_silver_words_key)
-            val goldWordsKey = getString(R.string.pref_lvl_gold_words_key)
-            val bronzeWordsDefault = getString(R.string.pref_lvl_bronze_words_default)
-            val silverWordsDefault = getString(R.string.pref_lvl_silver_words_default)
-            val goldWordsDefault = getString(R.string.pref_lvl_gold_words_default)
-            bindPreferences(bronzeWordsKey, bronzeWordsDefault, silverWordsKey, silverWordsDefault, goldWordsKey, goldWordsDefault)
+            val easyWordsKey = getString(R.string.pref_lvl_easy_words_key)
+            val mediumWordsKey = getString(R.string.pref_lvl_medium_words_key)
+            val hardWordsKey = getString(R.string.pref_lvl_hard_words_key)
+            val easyWordsDefault = getString(R.string.pref_lvl_easy_words_default)
+            val mediumWordsDefault = getString(R.string.pref_lvl_medium_words_default)
+            val hardWordsDefault = getString(R.string.pref_lvl_hard_words_default)
+            bindPreferences(easyWordsKey, easyWordsDefault, mediumWordsKey, mediumWordsDefault, hardWordsKey, hardWordsDefault)
             findPreference(getString(R.string.pref_lvl_restore_default_key)).setOnPreferenceClickListener {
                 PreferenceManager.getDefaultSharedPreferences(it.context).edit()
-                    .putString(bronzeWordsKey, bronzeWordsDefault)
-                    .putString(silverWordsKey, silverWordsDefault)
-                    .putString(goldWordsKey, goldWordsDefault)
+                    .putString(easyWordsKey, easyWordsDefault)
+                    .putString(mediumWordsKey, mediumWordsDefault)
+                    .putString(hardWordsKey, hardWordsDefault)
                     .commit()
-                bindPreferences(bronzeWordsKey, bronzeWordsDefault, silverWordsKey, silverWordsDefault, goldWordsKey, goldWordsDefault)
+                bindPreferences(easyWordsKey, easyWordsDefault, mediumWordsKey, mediumWordsDefault, hardWordsKey, hardWordsDefault)
                 true
             }
         }
 
-        private fun bindPreferences(bronzeWordsKey: String, bronzeWordsDefault: String,
-                                    silverWordsKey: String, silverWordsDefault: String,
-                                    goldWordsKey: String, goldWordsDefault: String) {
-            bindPreferenceSummaryToValue(findPreference(bronzeWordsKey), bronzeWordsDefault)
-            bindPreferenceSummaryToValue(findPreference(silverWordsKey), silverWordsDefault)
-            bindPreferenceSummaryToValue(findPreference(goldWordsKey), goldWordsDefault)
+        private fun bindPreferences(easyWordsKey: String, easyWordsDefault: String,
+                                    mediumWordsKey: String, mediumWordsDefault: String,
+                                    hardWordsKey: String, hardWordsDefault: String) {
+            bindPreferenceSummaryToValue(findPreference(easyWordsKey), easyWordsDefault)
+            bindPreferenceSummaryToValue(findPreference(mediumWordsKey), mediumWordsDefault)
+            bindPreferenceSummaryToValue(findPreference(hardWordsKey), hardWordsDefault)
         }
 
         private fun bindPreferenceSummaryToValue(preference: Preference, defaultValue: String) {

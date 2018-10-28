@@ -9,7 +9,7 @@ class ExercisePresenterImpl(var view: ExerciseView?, var interactor: ExerciseInt
 
     var title = ""
     var content = ""
-    var level = Level.BRONZE
+    var level = Level.EASY
 
     override fun onCreate(title: String, content: String, level: Level, exercise: Exercise?) {
         this.title = title

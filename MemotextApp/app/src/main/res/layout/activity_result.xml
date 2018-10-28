@@ -44,7 +44,7 @@
                 android:fontFamily="@font/product_sans_regular"
                 android:layout_gravity="center_horizontal|bottom"
                 android:layout_marginBottom="8dp"
-                tools:text="@string/level_bronze"/>
+                tools:text="@string/level_easy"/>
 
         </FrameLayout>
 

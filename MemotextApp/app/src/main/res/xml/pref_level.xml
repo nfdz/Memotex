@@ -4,7 +4,7 @@
         android:title="@string/pref_lvl_restore_default_title"
         android:key="@string/pref_lvl_restore_default_key"/>
 
-    <PreferenceCategory android:title="@string/level_bronze">
+    <PreferenceCategory android:title="@string/level_easy">
 
         <EditTextPreference
             android:capitalize="words"
@@ -13,14 +13,14 @@
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:defaultValue="@string/pref_lvl_bronze_words_default"
+            android:defaultValue="@string/pref_lvl_easy_words_default"
             android:textAlignment="center"
-            android:key="@string/pref_lvl_bronze_words_key"
+            android:key="@string/pref_lvl_easy_words_key"
             android:title="@string/pref_lvl_words_title" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/level_silver">
+    <PreferenceCategory android:title="@string/level_medium">
 
         <EditTextPreference
             android:capitalize="words"
@@ -29,14 +29,14 @@
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:defaultValue="@string/pref_lvl_silver_words_default"
+            android:defaultValue="@string/pref_lvl_medium_words_default"
             android:textAlignment="center"
-            android:key="@string/pref_lvl_silver_words_key"
+            android:key="@string/pref_lvl_medium_words_key"
             android:title="@string/pref_lvl_words_title" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/level_gold">
+    <PreferenceCategory android:title="@string/level_hard">
 
         <EditTextPreference
             android:capitalize="words"
@@ -45,9 +45,9 @@
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:defaultValue="@string/pref_lvl_gold_words_default"
+            android:defaultValue="@string/pref_lvl_hard_words_default"
             android:textAlignment="center"
-            android:key="@string/pref_lvl_gold_words_key"
+            android:key="@string/pref_lvl_hard_words_key"
             android:title="@string/pref_lvl_words_title" />
 
     </PreferenceCategory>

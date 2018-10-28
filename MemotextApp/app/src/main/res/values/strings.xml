@@ -6,9 +6,9 @@
     <string name="text_deleted">Text deleted</string>
     <string name="text_deleted_action">Undo</string>
     <string name="text_change_level_title">Level</string>
-    <string name="level_bronze">Easy</string>
-    <string name="level_silver">Medium</string>
-    <string name="level_gold">Hard</string>
+    <string name="level_easy">Easy</string>
+    <string name="level_medium">Medium</string>
+    <string name="level_hard">Hard</string>
 
     <string name="sort_by_title">Title</string>
     <string name="sort_by_level">Level</string>
@@ -47,14 +47,14 @@
     <string name="url_repo_error">Cannot open browser app</string>
 
     <string name="pref_lvl_words_title">Words to hide</string>
-    <string name="pref_lvl_bronze_words_key" translatable="false">bronze_words</string>
-    <string name="pref_lvl_silver_words_key" translatable="false">silver_words</string>
-    <string name="pref_lvl_gold_words_key" translatable="false">gold_words</string>
+    <string name="pref_lvl_easy_words_key" translatable="false">easy_words</string>
+    <string name="pref_lvl_medium_words_key" translatable="false">medium_words</string>
+    <string name="pref_lvl_hard_words_key" translatable="false">hard_words</string>
+    <string name="pref_lvl_easy_words_default" translatable="false">15</string>
+    <string name="pref_lvl_medium_words_default" translatable="false">30</string>
+    <string name="pref_lvl_hard_words_default" translatable="false">45</string>
     <string name="pref_lvl_restore_default_key" translatable="false">restore_default</string>
     <string name="pref_lvl_restore_default_title">Restore default values</string>
-    <string name="pref_lvl_bronze_words_default" translatable="false">5</string>
-    <string name="pref_lvl_silver_words_default" translatable="false">15</string>
-    <string name="pref_lvl_gold_words_default" translatable="false">30</string>
 
     <string name="pref_sort_criteria_key" translatable="false">sort_criteria</string>
     <string name="pref_sort_criteria_default" translatable="false">TITLE</string>

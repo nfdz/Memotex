@@ -51,7 +51,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseView, AdapterListener {
         setupView()
         presenter.onCreate(intent.getStringExtra(EXTRA_TEXT_TITLE, ""),
             intent.getStringExtra(EXTRA_TEXT_CONTENT, ""),
-            Level.valueOf(intent.getStringExtra(EXTRA_TEXT_LEVEL, Level.BRONZE.name)),
+            Level.valueOf(intent.getStringExtra(EXTRA_TEXT_LEVEL, Level.EASY.name)),
             savedInstanceState?.getParcelable(EXTRA_EXERCISE))
     }
 

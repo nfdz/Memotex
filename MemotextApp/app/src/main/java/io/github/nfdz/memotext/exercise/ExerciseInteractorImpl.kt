@@ -11,9 +11,9 @@ class ExerciseInteractorImpl(val context: Context) : ExerciseInteractor {
     override fun prepareExercise(content: String, level: Level, success: (exercise: Exercise) -> Unit, error: () -> Unit) {
 
         val wordsToHide = when(level) {
-            Level.BRONZE -> { context.getStringFromPreferences(R.string.pref_lvl_bronze_words_key, R.string.pref_lvl_bronze_words_default) }
-            Level.SILVER -> { context.getStringFromPreferences(R.string.pref_lvl_silver_words_key, R.string.pref_lvl_silver_words_default) }
-            Level.GOLD -> { context.getStringFromPreferences(R.string.pref_lvl_gold_words_key, R.string.pref_lvl_gold_words_default) }
+            Level.EASY -> { context.getStringFromPreferences(R.string.pref_lvl_easy_words_key, R.string.pref_lvl_easy_words_default) }
+            Level.MEDIUM -> { context.getStringFromPreferences(R.string.pref_lvl_medium_words_key, R.string.pref_lvl_medium_words_default) }
+            Level.HARD -> { context.getStringFromPreferences(R.string.pref_lvl_hard_words_key, R.string.pref_lvl_hard_words_default) }
         }.toInt()
 
         doAsync {

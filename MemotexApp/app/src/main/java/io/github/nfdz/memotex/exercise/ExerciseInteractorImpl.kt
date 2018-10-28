@@ -57,7 +57,7 @@ class ExerciseInteractorImpl(val context: Context) : ExerciseInteractor {
             exercise.elements.forEachIndexed { index, element ->
                 when (element) {
                     is TextElement -> {
-                        solutionBld.append(element.text)
+                        solutionBld.append(element.text.replace("\n", "<br>").replace("\r", "<br>"))
                     }
                     is SpaceElement -> {
                         solutionBld.append(" ")
@@ -65,7 +65,7 @@ class ExerciseInteractorImpl(val context: Context) : ExerciseInteractor {
                     is SlotElement -> {
                         slotsCount++
                         val answer = exerciseAnswers.answers[index] ?: ""
-                        val validAnswer = element.text == answer
+                        val validAnswer = element.text.equals(answer, ignoreCase = true)
                         if (validAnswer) {
                             validAnswers++
                             solutionBld.append("<b><font color=\"#009900\">${element.text}</font></b>")

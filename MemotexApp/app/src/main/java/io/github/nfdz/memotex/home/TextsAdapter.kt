@@ -10,20 +10,21 @@ import android.view.View
 import android.view.ViewGroup
 import io.github.nfdz.memotex.R
 import io.github.nfdz.memotex.common.Level
-import io.github.nfdz.memotex.common.Text
 import io.github.nfdz.memotex.common.inflate
 import kotlinx.android.synthetic.main.item_text_entry.view.*
 import kotlin.properties.Delegates
 
 
 interface AdapterListener {
-    fun onTextClick(text: Text)
-    fun onEditTextClick(text: Text)
-    fun onLevelIconClick(text: Text)
-    fun onDeleteClick(text: Text)
+    fun onTextClick(entry: AdapterEntryData)
+    fun onEditTextClick(entry: AdapterEntryData)
+    fun onLevelIconClick(entry: AdapterEntryData)
+    fun onDeleteClick(entry: AdapterEntryData)
 }
 
-class TextsAdapter(data: List<Text> = emptyList(), val listener: AdapterListener) : RecyclerView.Adapter<TextsAdapter.TextEntryHolder>() {
+data class AdapterEntryData(val title: String, val level: Level, val percentage: Int)
+
+class TextsAdapter(data: List<AdapterEntryData> = emptyList(), val listener: AdapterListener) : RecyclerView.Adapter<TextsAdapter.TextEntryHolder>() {
 
     var data by Delegates.observable(data) { _, oldList, newList ->
         val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
@@ -55,17 +56,17 @@ class TextsAdapter(data: List<Text> = emptyList(), val listener: AdapterListener
 
     class TextEntryHolder(view: View, val listener: AdapterListener) : RecyclerView.ViewHolder(view) {
 
-        var bindedText: Text? = null
+        var bindedText: AdapterEntryData? = null
 
-        fun bind(item: Text) = with(itemView) {
+        fun bind(item: AdapterEntryData) = with(itemView) {
             tv_text_title.text = item.title
             tv_success_percentage.text = "${item.percentage.toString()}%"
-            iv_level_trophy.contentDescription = when (item.level) {
+            iv_level_trophy.contentDescription = when(item.level) {
                 Level.EASY -> context.getString(R.string.level_easy)
                 Level.MEDIUM -> context.getString(R.string.level_medium)
                 Level.HARD -> context.getString(R.string.level_hard)
             }
-            val color = when (item.level) {
+            val color = when(item.level) {
                 Level.EASY -> ContextCompat.getColor(context, R.color.easyColor)
                 Level.MEDIUM -> ContextCompat.getColor(context, R.color.mediumColor)
                 Level.HARD -> ContextCompat.getColor(context, R.color.hardColor)

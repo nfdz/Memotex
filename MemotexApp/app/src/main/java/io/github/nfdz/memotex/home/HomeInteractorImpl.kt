@@ -3,58 +3,83 @@ package io.github.nfdz.memotex.home
 import android.content.Context
 import io.github.nfdz.memotex.R
 import io.github.nfdz.memotex.common.*
+import io.realm.Realm
+import io.realm.RealmChangeListener
+import io.realm.RealmResults
 
-class HomeInteractorImpl(val context: Context) : HomeInteractor {
+class HomeInteractorImpl(val context: Context) : HomeInteractor, RealmChangeListener<RealmResults<TextRealm>> {
 
-    var cachedTexts: List<Text>? = null
+    var listener: ((List<TextRealm>) -> Unit)? = null
+    var cachedTexts: List<TextRealm> = emptyList()
+    var realm: Realm? = null
+
+    override fun initialize(listener: (List<TextRealm>) -> Unit) {
+        this.listener = listener
+        realm = Realm.getDefaultInstance()
+        realm?.where(TextRealm::class.java)?.findAllAsync()?.addChangeListener(this)
+    }
+
+    override fun destroy() {
+        realm?.removeAllChangeListeners()
+        realm?.close()
+        realm = null
+    }
+
+    override fun onChange(t: RealmResults<TextRealm>) {
+        cachedTexts = t
+        notifyTexts()
+    }
+
+    private fun notifyTexts() {
+        listener?.invoke(when(getSortCriteria()) {
+            SortCriteria.TITLE -> cachedTexts.sortedBy { it.title }
+            SortCriteria.LEVEL -> cachedTexts.sortedWith(compareBy({it.getLevel()},{it.title}))
+            SortCriteria.PERCENTAGE -> cachedTexts.sortedWith(compareBy({it.percentage},{it.title}))
+            SortCriteria.DATE -> cachedTexts.sortedWith(compareBy({it.timestamp},{it.title}))
+        })
+    }
+
 
     override fun getSortCriteria(): SortCriteria {
         return SortCriteria.valueOf(context.getStringFromPreferences(R.string.pref_sort_criteria_key, R.string.pref_sort_criteria_default))
     }
 
-    override fun setSortCriteria(sortCriteria: SortCriteria, callback: () -> Unit) {
+    override fun setSortCriteria(sortCriteria: SortCriteria) {
         doAsync {
             context.setStringInPreferences(R.string.pref_sort_criteria_key, sortCriteria.name)
             doMainThread {
-                callback()
+                notifyTexts()
             }
         }
     }
 
-    override fun deleteText(text: Text, callback: (Text) -> Unit) {
-        val mutableList = cachedTexts!!.toMutableList()
-        mutableList.remove(text)
-        cachedTexts = mutableList.toList()
-        callback(text)
-    }
-
-    override fun undoDeleteText(text: Text, callback: () -> Unit) {
-        val mutableList = cachedTexts!!.toMutableList()
-        mutableList.add(text)
-        cachedTexts = mutableList.toList()
-        callback()
-    }
-
-    override fun loadTexts(forceUpdateCache: Boolean, callback: (List<Text>) -> Unit) {
-        // TODO
-        doAsync {
-            if (cachedTexts == null) {
-                cachedTexts = (1..90).flatMap { listOf(Text("Test title $it lorem ipsum apsala tumala torpaz camwxmi", "Lorem .e:f- w-w_a sa\n{} [] $% \n ipsum is simply dummy \rtext of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets", Level.MEDIUM, 10, 0L))}
-            }
-            when(getSortCriteria()) {
-                SortCriteria.TITLE -> cachedTexts!!.sortedBy { it.title }
-                SortCriteria.LEVEL -> cachedTexts!!.sortedBy { it.level }
-                SortCriteria.PERCENTAGE -> cachedTexts!!.sortedBy { it.percentage }
-                SortCriteria.DATE -> cachedTexts!!.sortedBy { it.timestamp }
-            }
-            doMainThread {
-                callback(cachedTexts!!)
-            }
+    override fun deleteText(title: String, callback: (TextRealm) -> Unit) {
+        realm?.beginTransaction()
+        cachedTexts.find { it.title == title }?.let {
+            val copy = TextRealm(it.title, it.content, it.levelString, it.percentage, it.timestamp)
+            it.deleteFromRealm()
+            callback(copy)
         }
+        realm?.commitTransaction()
     }
 
-    override fun changeTextLevel(text: Text, level: Level, callback: () -> Unit) {
-        // TODO
+    override fun undoDeleteText(text: TextRealm) {
+        realm?.beginTransaction()
+        realm?.copyToRealmOrUpdate(text)
+        realm?.commitTransaction()
+    }
+
+    override fun changeTextLevel(title: String, level: Level) {
+        realm?.beginTransaction()
+        cachedTexts.find { it.title == title }?.levelString = level.name
+//        val managedText = realm?.where(TextRealm::class.java)?.equalTo("title", title)?.findFirst()
+//        managedText?.levelString = level.name
+//        realm?.copyToRealmOrUpdate(text)
+        realm?.commitTransaction()
+    }
+
+    override fun getTextContent(title: String): String {
+        return cachedTexts.find { it.title == title }?.content ?: ""
     }
 
 }

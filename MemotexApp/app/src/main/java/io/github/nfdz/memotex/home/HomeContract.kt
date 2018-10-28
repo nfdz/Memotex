@@ -2,40 +2,41 @@ package io.github.nfdz.memotex.home
 
 import io.github.nfdz.memotex.common.Level
 import io.github.nfdz.memotex.common.SortCriteria
-import io.github.nfdz.memotex.common.Text
+import io.github.nfdz.memotex.common.TextRealm
 
 interface HomeView {
-    fun setContent(texts: List<Text>)
-    fun showDeletedMessage(text: Text)
+    fun setContent(texts: List<TextRealm>)
+    fun showDeletedMessage(text: TextRealm)
     fun askSortCriteria(currentSortCriteria: SortCriteria)
-    fun askLevel(text: Text)
+    fun askLevel(title: String, level: Level)
     fun navigateToAddText()
-    fun navigateToEditText(text: Text)
-    fun navigateToExercise(text: Text)
+    fun navigateToEditText(title: String, content: String)
+    fun navigateToExercise(title: String, content: String, level: Level)
     fun navigateToSettings()
 }
 
 interface HomePresenter {
     fun onCreate()
     fun onDestroy()
-    fun onEditorFinish()
     fun onSortCriteriaSelected(sortCriteria: SortCriteria)
     fun onAddTextClick()
-    fun onEditTextClick(text: Text)
-    fun onDeleteTextClick(text: Text)
-    fun onUndoDeleteTextClick(text: Text)
-    fun onLevelIconClick(text: Text)
-    fun onTextClick(text: Text)
+    fun onEditTextClick(title: String)
+    fun onDeleteTextClick(title: String)
+    fun onUndoDeleteTextClick(text: TextRealm)
+    fun onLevelIconClick(title: String, level: Level)
+    fun onTextClick(title: String, level: Level)
     fun onChangeSortCriteriaClick()
-    fun onLevelSelected(text: Text, level: Level)
+    fun onLevelSelected(title: String, level: Level)
     fun onSettingsClick()
 }
 
 interface HomeInteractor {
+    fun initialize(listener: (List<TextRealm>) -> Unit)
+    fun destroy()
+    fun getTextContent(title: String): String
     fun getSortCriteria(): SortCriteria
-    fun setSortCriteria(sortCriteria: SortCriteria, callback: () -> Unit)
-    fun loadTexts(forceUpdateCache: Boolean, callback: (List<Text>) -> Unit)
-    fun deleteText(text: Text, callback: (Text) -> Unit)
-    fun undoDeleteText(text: Text, callback: () -> Unit)
-    fun changeTextLevel(text: Text, level: Level, callback: () -> Unit)
+    fun setSortCriteria(sortCriteria: SortCriteria)
+    fun deleteText(title: String, callback: (TextRealm) -> Unit)
+    fun undoDeleteText(text: TextRealm)
+    fun changeTextLevel(title: String, level: Level)
 }

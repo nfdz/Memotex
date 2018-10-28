@@ -1,33 +1,32 @@
 package io.github.nfdz.memotex.editor
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import io.github.nfdz.memotex.R
-import io.github.nfdz.memotex.common.Text
 import io.github.nfdz.memotex.common.getStringExtra
 import io.github.nfdz.memotex.common.showSnackbar
 import kotlinx.android.synthetic.main.activity_editor.*
 
-fun Activity.startAddTextActivity(requestCode: Int) {
+fun Context.startAddTextActivity() {
     val starter = Intent(this, EditorActivity::class.java).apply {
         action = ACTION_ADD
     }
-    ActivityCompat.startActivityForResult(this, starter, requestCode, null)
+    startActivity(starter)
 }
 
-fun Activity.startEditTextActivity(requestCode: Int, text: Text) {
+fun Context.startEditTextActivity(title: String, content: String) {
     val starter = Intent(this, EditorActivity::class.java).apply {
         action = ACTION_EDIT
-        putExtra(EXTRA_TEXT_TITLE, text.title)
-        putExtra(EXTRA_TEXT_CONTENT, text.content)
+        putExtra(EXTRA_TEXT_TITLE, title)
+        putExtra(EXTRA_TEXT_CONTENT, content)
     }
-    ActivityCompat.startActivityForResult(this, starter, requestCode, null)
+    startActivity(starter)
 }
 
 private val ACTION_ADD = "add_text"

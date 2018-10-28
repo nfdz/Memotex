@@ -1,6 +1,5 @@
 package io.github.nfdz.memotex.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
@@ -10,10 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import io.github.nfdz.memotex.R
-import io.github.nfdz.memotex.common.SortCriteria
-import io.github.nfdz.memotex.common.Text
-import io.github.nfdz.memotex.common.showAskLevelDialog
-import io.github.nfdz.memotex.common.showSnackbarWithAction
+import io.github.nfdz.memotex.common.*
 import io.github.nfdz.memotex.editor.startAddTextActivity
 import io.github.nfdz.memotex.editor.startEditTextActivity
 import io.github.nfdz.memotex.exercise.startExerciseActivity
@@ -23,8 +19,6 @@ import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
 
-    private val EDITOR_REQUEST_CODE = 44078
-
     private val presenter: HomePresenter by lazy { HomePresenterImpl(this, HomeInteractorImpl(this)) }
     private val adapter = TextsAdapter(listener = this)
 
@@ -32,14 +26,6 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
         super.onCreate(savedInstanceState)
         setupView()
         presenter.onCreate()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == EDITOR_REQUEST_CODE) {
-            presenter.onEditorFinish()
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
-        }
     }
 
     override fun onDestroy() {
@@ -69,11 +55,13 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
         }
     }
 
-    override fun setContent(texts: List<Text>) {
-        adapter.data = texts
+    override fun setContent(texts: List<TextRealm>) {
+        adapter.data = texts.map {
+            AdapterEntryData(it.title, it.getLevel(), it.percentage)
+        }
     }
 
-    override fun showDeletedMessage(text: Text) {
+    override fun showDeletedMessage(text: TextRealm) {
         coordinator_root.showSnackbarWithAction(getString(R.string.text_deleted),
             getString(R.string.text_deleted_action),
             Snackbar.LENGTH_LONG,
@@ -106,9 +94,9 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
         }.show()
     }
 
-    override fun askLevel(text: Text) {
-        showAskLevelDialog(text.level) {
-            presenter.onLevelSelected(text, it)
+    override fun askLevel(title: String, level: Level) {
+        showAskLevelDialog(level) {
+            presenter.onLevelSelected(title, it)
         }
     }
 
@@ -117,31 +105,31 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
     }
 
     override fun navigateToAddText() {
-        startAddTextActivity(EDITOR_REQUEST_CODE)
+        startAddTextActivity()
     }
 
-    override fun navigateToEditText(text: Text) {
-        startEditTextActivity(EDITOR_REQUEST_CODE, text)
+    override fun navigateToEditText(title: String, content: String) {
+        startEditTextActivity(title, content)
     }
 
-    override fun navigateToExercise(text: Text) {
-        startExerciseActivity(text.title, text.content, text.level)
+    override fun navigateToExercise(title: String, content: String, level: Level) {
+        startExerciseActivity(title, content, level)
     }
 
-    override fun onTextClick(text: Text) {
-        presenter.onTextClick(text)
+    override fun onTextClick(entry: AdapterEntryData) {
+        presenter.onTextClick(entry.title, entry.level)
     }
 
-    override fun onLevelIconClick(text: Text) {
-        presenter.onLevelIconClick(text)
+    override fun onLevelIconClick(entry: AdapterEntryData) {
+        presenter.onLevelIconClick(entry.title, entry.level)
     }
 
-    override fun onEditTextClick(text: Text) {
-        presenter.onEditTextClick(text)
+    override fun onEditTextClick(entry: AdapterEntryData) {
+        presenter.onEditTextClick(entry.title)
     }
 
-    override fun onDeleteClick(text: Text) {
-        presenter.onDeleteTextClick(text)
+    override fun onDeleteClick(entry: AdapterEntryData) {
+        presenter.onDeleteTextClick(entry.title)
     }
 
 }

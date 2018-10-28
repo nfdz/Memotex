@@ -100,4 +100,4 @@ class ExerciseAnswers(val answers: Map<Int,String>) : Parcelable {
     }
 }
 
-class ExerciseResult(val title: String, val level: Level, val percentage: Int, val textSolution: CharSequence)
+class ExerciseResult(val title: String, val content: String, val level: Level, val percentage: Int, val textSolution: CharSequence)

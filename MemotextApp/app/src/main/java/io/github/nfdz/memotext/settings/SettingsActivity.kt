@@ -128,11 +128,12 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             findPreference(getString(R.string.pref_about_feedback_key)).setOnPreferenceClickListener {
                 try {
                     val email = getString(R.string.email_feedback_address)
-                    val starter = Intent(Intent.ACTION_SEND)
-                    starter.putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
-                    starter.data = Uri.parse(email)
-                    starter.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_feedback_subject));
-                    starter.type = "plain/content"
+                    val starter = Intent(Intent.ACTION_SEND).apply {
+                        putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
+                        data = Uri.parse(email)
+                        putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_feedback_subject));
+                        type = "plain/content"
+                    }
                     startActivity(starter)
                 } catch (e: Exception) {
                     Timber.e(e)

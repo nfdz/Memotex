@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.support.v4.app.NavUtils
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.AppCompatEditText
@@ -16,14 +17,17 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import io.github.nfdz.memotext.R
 import io.github.nfdz.memotext.common.*
+import io.github.nfdz.memotext.result.startResultActivity
 import kotlinx.android.synthetic.main.activity_exercise.*
 
 
-fun Context.startExerciseActivity(text: Text) {
-    val starter = Intent(this, ExerciseActivity::class.java)
-    starter.putExtra(EXTRA_TEXT_TITLE, text.title)
-    starter.putExtra(EXTRA_TEXT_CONTENT, text.content)
-    starter.putExtra(EXTRA_TEXT_LEVEL, text.level.name)
+fun Context.startExerciseActivity(title: String, content: String, level: Level, flags: Int = 0) {
+    val starter = Intent(this, ExerciseActivity::class.java).apply {
+        putExtra(EXTRA_TEXT_TITLE, title)
+        putExtra(EXTRA_TEXT_CONTENT, content)
+        putExtra(EXTRA_TEXT_LEVEL, level.name)
+        this.flags = flags
+    }
     startActivity(starter)
 }
 
@@ -67,6 +71,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseView, AdapterListener {
 
     private fun setupView() {
         setContentView(R.layout.activity_exercise)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         exercise_rv.adapter = adapter
         exercise_iv_font_big.setOnClickListener { presenter.onIncreaseFontSizeClick() }
         exercise_iv_font_small.setOnClickListener { presenter.onDecreaseFontSizeClick() }
@@ -76,6 +81,10 @@ class ExerciseActivity : AppCompatActivity(), ExerciseView, AdapterListener {
     override fun onDestroy() {
         presenter.onDestroy()
         super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        NavUtils.navigateUpFromSameTask(this)
     }
 
     override fun showLoading() {
@@ -108,7 +117,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseView, AdapterListener {
     }
 
     override fun navigateToResult(result: ExerciseResult) {
-        // TODO
+        startResultActivity(result.title, result.content, result.level, result.percentage, result.textSolution)
     }
 
     override fun navigateToError() {
@@ -117,18 +126,22 @@ class ExerciseActivity : AppCompatActivity(), ExerciseView, AdapterListener {
     }
 
     override fun showChangeAnswerDialog(position: Int, currentAnswer: String) {
-        val container = FrameLayout(this)
-        container.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
         val padding = resources.getDimensionPixelSize(R.dimen.activity_margin)
-        container.setPadding(padding, padding, padding, padding)
-        val input = AppCompatEditText(this)
-        input.maxLines = 1
-        input.gravity = Gravity.CENTER
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) input.textAlignment = EditText.TEXT_ALIGNMENT_CENTER
-        input.inputType = InputType.TYPE_CLASS_TEXT
-        input.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
-        input.append(currentAnswer)
-        container.addView(input)
+        val input = AppCompatEditText(this).apply {
+            maxLines = 1
+            gravity = Gravity.CENTER
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                textAlignment = EditText.TEXT_ALIGNMENT_CENTER
+            }
+            inputType = InputType.TYPE_CLASS_TEXT
+            layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+            append(currentAnswer)
+        }
+        val container = FrameLayout(this).apply {
+            layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+            setPadding(padding, padding, padding, padding)
+            addView(input)
+        }
         val dialog = AlertDialog.Builder(this).apply {
             setView(container)
         }.setNegativeButton(android.R.string.cancel) { dialog: DialogInterface, _: Int ->

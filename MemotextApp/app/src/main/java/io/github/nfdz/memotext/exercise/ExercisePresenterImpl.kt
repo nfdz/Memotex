@@ -8,10 +8,12 @@ import io.github.nfdz.memotext.common.bound
 class ExercisePresenterImpl(var view: ExerciseView?, var interactor: ExerciseInteractor?) : ExercisePresenter {
 
     var title = ""
+    var content = ""
     var level = Level.BRONZE
 
     override fun onCreate(title: String, content: String, level: Level, exercise: Exercise?) {
         this.title = title
+        this.content = content
         this.level = level
         view?.showLoading()
         if (exercise != null) {
@@ -48,7 +50,7 @@ class ExercisePresenterImpl(var view: ExerciseView?, var interactor: ExerciseInt
 
     override fun onCheckExerciseClick(exercise: Exercise, answers: ExerciseAnswers) {
         view?.showLoading()
-        interactor?.checkAnswers(title, level, exercise, answers) {
+        interactor?.checkAnswers(title, content, level, exercise, answers) {
             view?.navigateToResult(it)
         }
     }

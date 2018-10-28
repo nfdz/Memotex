@@ -41,9 +41,9 @@
 
     <ImageView
         android:id="@+id/iv_level_trophy"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:padding="4dp"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:padding="6dp"
         app:srcCompat="@drawable/ic_trophy_light"
         tools:tint="@color/bronzeColor"
         android:background="?attr/selectableItemBackground"

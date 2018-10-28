@@ -2,7 +2,7 @@
 <resources>
 
     <integer name="exercise_default_font_size_sp">24</integer>
-    <integer name="exercise_max_font_size_sp">40</integer>
-    <integer name="exercise_min_font_size_sp">10</integer>
+    <integer name="exercise_max_font_size_sp">38</integer>
+    <integer name="exercise_min_font_size_sp">14</integer>
 
 </resources>

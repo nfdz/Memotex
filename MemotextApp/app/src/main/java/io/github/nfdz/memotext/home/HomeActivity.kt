@@ -10,9 +10,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import io.github.nfdz.memotext.R
-import io.github.nfdz.memotext.common.Level
 import io.github.nfdz.memotext.common.SortCriteria
 import io.github.nfdz.memotext.common.Text
+import io.github.nfdz.memotext.common.showAskLevelDialog
 import io.github.nfdz.memotext.common.showSnackbarWithAction
 import io.github.nfdz.memotext.editor.startAddTextActivity
 import io.github.nfdz.memotext.editor.startEditTextActivity
@@ -94,7 +94,7 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
             SortCriteria.DATE -> 3
         }
         AlertDialog.Builder(this).apply {
-            title = getString(R.string.action_sort)
+            setTitle(R.string.action_sort)
         }.setSingleChoiceItems(options.toTypedArray(), checkedItem) { dialog, which ->
             presenter.onSortCriteriaSelected(when(which) {
                 1 -> SortCriteria.LEVEL
@@ -107,24 +107,9 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
     }
 
     override fun askLevel(text: Text) {
-        val options = listOf<String>(getString(R.string.level_bronze),
-            getString(R.string.level_silver),
-            getString(R.string.level_gold))
-        val checkedItem = when(text.level) {
-            Level.BRONZE -> 0
-            Level.SILVER -> 1
-            Level.GOLD -> 2
+        showAskLevelDialog(text.level) {
+            presenter.onLevelSelected(text, it)
         }
-        AlertDialog.Builder(this).apply {
-            title = getString(R.string.text_change_level_title)
-        }.setSingleChoiceItems(options.toTypedArray(), checkedItem) { dialog, which ->
-            presenter.onLevelSelected(text, when(which) {
-                1 -> Level.SILVER
-                2 ->Level.GOLD
-                else -> Level.BRONZE
-            })
-            dialog.dismiss()
-        }.show()
     }
 
     override fun navigateToSettings() {
@@ -140,7 +125,7 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
     }
 
     override fun navigateToExercise(text: Text) {
-        startExerciseActivity(text)
+        startExerciseActivity(text.title, text.content, text.level)
     }
 
     override fun onTextClick(text: Text) {

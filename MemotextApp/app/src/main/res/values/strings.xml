@@ -1,14 +1,14 @@
 <resources>
 
-    <string name="app_name">Memotext</string>
+    <string name="app_name">Memotex</string>
     <string name="action_sort">Sort by</string>
     <string name="action_settings">Settings</string>
     <string name="text_deleted">Text deleted</string>
     <string name="text_deleted_action">Undo</string>
     <string name="text_change_level_title">Level</string>
-    <string name="level_bronze">Bronze/Easy</string>
-    <string name="level_silver">Silver/Medium</string>
-    <string name="level_gold">Gold/Hard</string>
+    <string name="level_bronze">Easy</string>
+    <string name="level_silver">Medium</string>
+    <string name="level_gold">Hard</string>
 
     <string name="sort_by_title">Title</string>
     <string name="sort_by_level">Level</string>
@@ -29,6 +29,8 @@
     <string name="exercise_font_bigger_description">Increase font size</string>
     <string name="exercise_font_smaller_description">Decrease font size</string>
     <string name="exercise_prepare_error">Sorry, it was not able to create an exercise for this text :(</string>
+    <string name="result_share_error">Cannot share your result</string>
+    <string name="result_share_template">I made it! I\'ve memorize my text \'%1$s\' with a success of %2$d%% in %3$s level. I\'ve use Memotex app.</string>
 
     <!-- Strings related to Settings -->
     <string name="pref_header_level">Level</string>

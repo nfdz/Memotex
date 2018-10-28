@@ -28,7 +28,8 @@ class ExerciseInteractorImpl(val context: Context) : ExerciseInteractor {
 
     }
 
-    override fun checkAnswers(title: String, level: Level, exercise: Exercise, exerciseAnswers: ExerciseAnswers, callback: (exerciseResult: ExerciseResult) -> Unit) {
+    override fun checkAnswers(title: String, content: String, level: Level, exercise: Exercise, exerciseAnswers: ExerciseAnswers, callback: (exerciseResult: ExerciseResult) -> Unit) {
+        // TODO save
         doAsync {
             var slotsCount = 0
             var validAnswers = 0
@@ -43,9 +44,13 @@ class ExerciseInteractorImpl(val context: Context) : ExerciseInteractor {
                         val validAnswer = element.text == answer
                         if (validAnswer) {
                             validAnswers++
-                            solutionBld.append("<font color=\"#00FF00\">${element.text}</font>")
+                            solutionBld.append("<b><font color=\"#009900\">${element.text}</font></b>")
                         } else {
-                            solutionBld.append("<strike><font color=\"#DC143C\">$answer</font></strike> <font color=\"#00FF00\">${element.text}</font>")
+                            if (!answer.isEmpty()) {
+                                solutionBld.append("<b><strike><font color=\"#CC0000\">$answer</font></strike></b>")
+                                solutionBld.append(" ")
+                            }
+                            solutionBld.append("<b><u>${element.text}</u></b>")
                         }
                     }
                 }
@@ -54,7 +59,7 @@ class ExerciseInteractorImpl(val context: Context) : ExerciseInteractor {
             val percentage: Int = Math.ceil(100*validAnswers.toDouble()/slotsCount).toInt().bound(0, 100)
             val textSolution: CharSequence = HtmlCompat.fromHtml(solutionBld.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
             doMainThread {
-                callback(ExerciseResult(title, level, percentage, textSolution))
+                callback(ExerciseResult(title, content, level, percentage, textSolution))
             }
         }
     }

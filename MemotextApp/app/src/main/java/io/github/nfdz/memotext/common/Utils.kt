@@ -12,6 +12,7 @@ import android.support.annotation.WorkerThread
 import android.support.design.widget.Snackbar
 import android.support.v4.text.HtmlCompat
 import android.support.v4.text.HtmlCompat.FROM_HTML_OPTION_USE_CSS_COLORS
+import android.support.v7.app.AlertDialog
 import android.text.Spanned
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -21,6 +22,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import io.github.nfdz.memotext.R
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
@@ -48,8 +50,7 @@ private fun processSnackbarText(text: CharSequence): Spanned {
 }
 
 fun Intent.getStringExtra(name: String, defaultValue: String): String {
-    val result: String? = getStringExtra(name)
-    return result ?: defaultValue
+    return getStringExtra(name) ?: defaultValue
 }
 
 class doAsync(val handler: () -> Unit) : AsyncTask<Void, Void, Void>() {
@@ -76,6 +77,27 @@ fun Context.getStringFromPreferences(@StringRes key: Int, @StringRes default: In
 @WorkerThread
 fun Context.setStringInPreferences(@StringRes key: Int, value: String) {
     PreferenceManager.getDefaultSharedPreferences(this).edit().putString(getString(key), value).commit()
+}
+
+fun Context.showAskLevelDialog(level: Level, callback: (level: Level) -> Unit) {
+    val options = listOf<String>(getString(R.string.level_bronze),
+        getString(R.string.level_silver),
+        getString(R.string.level_gold))
+    val checkedItem = when(level) {
+        Level.BRONZE -> 0
+        Level.SILVER -> 1
+        Level.GOLD -> 2
+    }
+    AlertDialog.Builder(this).apply {
+        setTitle(R.string.text_change_level_title)
+    }.setSingleChoiceItems(options.toTypedArray(), checkedItem) { dialog, which ->
+        callback(when(which) {
+            1 -> Level.SILVER
+            2 ->Level.GOLD
+            else -> Level.BRONZE
+        })
+        dialog.dismiss()
+    }.show()
 }
 
 fun EditText.onNextOrEnterListener(callback: () -> Unit) {

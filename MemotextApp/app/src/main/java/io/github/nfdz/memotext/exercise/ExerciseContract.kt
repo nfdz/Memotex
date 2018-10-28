@@ -28,5 +28,10 @@ interface ExercisePresenter {
 
 interface ExerciseInteractor {
     fun prepareExercise(content: String, level: Level, success: (exercise: Exercise) -> Unit, error: () -> Unit)
-    fun checkAnswers(title: String, level: Level, exercise: Exercise, exerciseAnswers: ExerciseAnswers, callback: (exerciseResult: ExerciseResult) -> Unit)
+    fun checkAnswers(title: String,
+                     content: String,
+                     level: Level,
+                     exercise: Exercise,
+                     exerciseAnswers: ExerciseAnswers,
+                     callback: (exerciseResult: ExerciseResult) -> Unit)
 }

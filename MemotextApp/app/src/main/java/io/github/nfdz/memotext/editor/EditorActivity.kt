@@ -13,16 +13,18 @@ import io.github.nfdz.memotext.common.showSnackbar
 import kotlinx.android.synthetic.main.activity_editor.*
 
 fun Activity.startAddTextActivity(requestCode: Int) {
-    val starter = Intent(this, EditorActivity::class.java)
-    starter.action = ACTION_ADD
+    val starter = Intent(this, EditorActivity::class.java).apply {
+        action = ACTION_ADD
+    }
     ActivityCompat.startActivityForResult(this, starter, requestCode, null)
 }
 
 fun Activity.startEditTextActivity(requestCode: Int, text: Text) {
-    val starter = Intent(this, EditorActivity::class.java)
-    starter.action = ACTION_EDIT
-    starter.putExtra(EXTRA_TEXT_TITLE, text.title)
-    starter.putExtra(EXTRA_TEXT_CONTENT, text.content)
+    val starter = Intent(this, EditorActivity::class.java).apply {
+        action = ACTION_EDIT
+        putExtra(EXTRA_TEXT_TITLE, text.title)
+        putExtra(EXTRA_TEXT_CONTENT, text.content)
+    }
     ActivityCompat.startActivityForResult(this, starter, requestCode, null)
 }
 

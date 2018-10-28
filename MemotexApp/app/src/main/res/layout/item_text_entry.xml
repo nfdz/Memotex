@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="2"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:textSize="@dimen/home_entry_text_size"
         android:textColor="@color/textColorDark"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,8 +20,8 @@
         app:layout_constraintRight_toLeftOf="@+id/tv_success_percentage"
         android:layout_marginLeft="@dimen/activity_margin"
         android:layout_marginStart="@dimen/activity_margin"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="@dimen/home_entry_horizontal_margin"
+        android:layout_marginRight="@dimen/home_entry_horizontal_margin"
         tools:text="Lorem ipsum"/>
 
     <TextView
@@ -30,20 +29,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="18sp"
+        android:textSize="@dimen/home_entry_percentage_text_size"
         android:textColor="@color/textColorGray"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/iv_level_trophy"
-        android:layout_marginRight="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginRight="@dimen/home_entry_horizontal_margin"
+        android:layout_marginEnd="@dimen/home_entry_horizontal_margin"
         tools:text="100%"/>
 
     <ImageView
         android:id="@+id/iv_level_trophy"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        android:padding="6dp"
+        android:layout_width="@dimen/home_entry_level_icon_size"
+        android:layout_height="@dimen/home_entry_level_icon_size"
+        android:padding="@dimen/home_entry_level_icon_padding"
         app:srcCompat="@drawable/ic_trophy_light"
         tools:tint="@color/easyColor"
         android:background="?attr/selectableItemBackground"

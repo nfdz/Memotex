@@ -14,14 +14,14 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/result_header_height"
             app:layout_scrollFlags="scroll|enterAlways">
 
             <ImageView
                 android:id="@+id/result_iv_exit"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:padding="6dp"
+                android:layout_width="@dimen/result_close_icon_size"
+                android:layout_height="@dimen/result_close_icon_size"
+                android:padding="@dimen/result_close_icon_padding"
                 android:background="?attr/selectableItemBackground"
                 android:layout_gravity="top|end"
                 app:srcCompat="@drawable/ic_close_light"/>
@@ -33,7 +33,7 @@
                 tools:text="90%"
                 android:textColor="@color/textColorLight"
                 android:layout_gravity="center"
-                android:textSize="40sp"
+                android:textSize="@dimen/result_percentage_text_size"
                 android:fontFamily="@font/product_sans_regular"/>
 
             <TextView
@@ -43,7 +43,8 @@
                 android:textColor="@color/textColorLight"
                 android:fontFamily="@font/product_sans_regular"
                 android:layout_gravity="center_horizontal|bottom"
-                android:layout_marginBottom="8dp"
+                android:textSize="@dimen/result_level_text_size"
+                android:layout_marginBottom="@dimen/result_level_text_margin_bottom"
                 tools:text="@string/level_easy"/>
 
         </FrameLayout>
@@ -55,7 +56,7 @@
         android:layout_height="match_parent"
         android:scrollbars="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:paddingBottom="70dp"
+        android:paddingBottom="@dimen/result_solution_padding_bottom"
         android:clipToPadding="false">
 
         <LinearLayout
@@ -68,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textSize="18sp"
+                android:textSize="@dimen/result_title_text_size"
                 android:textStyle="bold"
                 android:padding="@dimen/activity_margin"
                 android:layout_marginTop="@dimen/activity_margin"
@@ -78,7 +79,7 @@
                 android:id="@+id/result_tv_solution"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textSize="@dimen/result_solution_text_size"
                 android:padding="@dimen/activity_margin"
                 tools:text="Lorem ipsum "/>
 

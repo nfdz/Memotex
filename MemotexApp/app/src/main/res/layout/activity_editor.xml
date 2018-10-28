@@ -34,7 +34,7 @@
                     android:textColor="@color/textColorDark"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:maxLength="80"
+                    android:maxLength="@integer/title_max_length"
                     android:hint="@string/text_title_hint" />
 
             </android.support.design.widget.TextInputLayout>
@@ -51,9 +51,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textColorDark"
-                    android:maxLength="1024"
+                    android:maxLength="@integer/content_max_length"
                     android:inputType="textMultiLine"
-                    android:maxLines="200"
                     android:hint="@string/text_content_hint" />
 
             </android.support.design.widget.TextInputLayout>

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/exercise_pb"
-        android:textSize="16sp"
+        android:textSize="@dimen/exercise_progress_text_size"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
         android:layout_marginLeft="@dimen/activity_margin"
@@ -35,9 +35,9 @@
         android:contentDescription="@string/exercise_font_bigger_description"
         app:layout_constraintBottom_toTopOf="@+id/exercise_pb"
         app:layout_constraintRight_toLeftOf="@+id/exercise_iv_font_small"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:padding="6dp"
+        android:layout_width="@dimen/exercise_font_increase_icon_size"
+        android:layout_height="@dimen/exercise_font_increase_icon_size"
+        android:padding="@dimen/exercise_font_increase_icon_padding"
         android:background="?attr/selectableItemBackground"
         app:srcCompat="@drawable/ic_font_bigger_accent"/>
 
@@ -46,9 +46,9 @@
         android:contentDescription="@string/exercise_font_smaller_description"
         app:layout_constraintBottom_toTopOf="@+id/exercise_pb"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:padding="6dp"
+        android:layout_width="@dimen/exercise_font_increase_icon_size"
+        android:layout_height="@dimen/exercise_font_increase_icon_size"
+        android:padding="@dimen/exercise_font_increase_icon_padding"
         android:background="?attr/selectableItemBackground"
         app:srcCompat="@drawable/ic_font_smaller_accent"/>
 
@@ -56,10 +56,10 @@
         android:id="@+id/exercise_tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:maxLines="3"
+        android:maxLines="@integer/exercise_title_max_lines"
         android:ellipsize="end"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="@dimen/exercise_title_size"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -84,7 +84,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/exercise_rv"
         android:layout_width="0dp"
-        android:layout_height="160dp"
+        android:layout_height="@dimen/exercise_content_height"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exercise_tv_title"
@@ -112,8 +112,8 @@
         android:focusable="true">
 
         <ProgressBar
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/loading_progress_bar_size"
+            android:layout_height="@dimen/loading_progress_bar_size"
             android:layout_gravity="center"/>
 
     </FrameLayout>

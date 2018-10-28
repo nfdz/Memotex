@@ -10,10 +10,10 @@
     <string name="level_medium">Medium</string>
     <string name="level_hard">Hard</string>
 
-    <string name="sort_by_title">Title</string>
-    <string name="sort_by_level">Level</string>
-    <string name="sort_by_percentage">Percentage</string>
-    <string name="sort_by_date">Date</string>
+    <string name="sort_by_title">Title (a to z)</string>
+    <string name="sort_by_level">Level (easy to hard)</string>
+    <string name="sort_by_percentage">Percentage (0 to 100)</string>
+    <string name="sort_by_date">Date (recent to old)</string>
     <string name="title_activity_settings">Settings</string>
 
     <string name="add_text_title">Add text</string>

@@ -1,8 +1,12 @@
 package io.github.nfdz.memotex.result
 
 import android.content.Context
+import com.vicpin.krealmextensions.executeTransaction
+import com.vicpin.krealmextensions.queryFirst
+import com.vicpin.krealmextensions.save
 import io.github.nfdz.memotex.R
 import io.github.nfdz.memotex.common.Level
+import io.github.nfdz.memotex.common.TextRealm
 
 class ResultInteractorImpl(val context: Context) : ResultInteractor {
 
@@ -16,7 +20,13 @@ class ResultInteractorImpl(val context: Context) : ResultInteractor {
     }
 
     override fun changeTextLevel(title: String, level: Level, callback: () -> Unit) {
-        // TODO
+        executeTransaction { _ ->
+            TextRealm().queryFirst { equalTo("title", title) }?.let {
+                it.levelString = level.name
+                it.save()
+            }
+        }
+        callback()
     }
 
 }

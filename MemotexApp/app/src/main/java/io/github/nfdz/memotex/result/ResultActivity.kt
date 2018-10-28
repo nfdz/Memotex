@@ -14,7 +14,13 @@ import io.github.nfdz.memotex.exercise.startExerciseActivity
 import kotlinx.android.synthetic.main.activity_result.*
 import timber.log.Timber
 
-fun Context.startResultActivity(title: String, content: String, level: Level, percentage: Int, textSolution: CharSequence) {
+fun Context.startResultActivity(
+    title: String,
+    content: String,
+    level: Level,
+    percentage: Int,
+    textSolution: CharSequence
+) {
     val starter = Intent(this, ResultActivity::class.java).apply {
         putExtra(EXTRA_RESULT_TITLE, title)
         putExtra(EXTRA_RESULT_CONTENT, content)
@@ -39,11 +45,13 @@ class ResultActivity : AppCompatActivity(), ResultView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupView()
-        presenter.onCreate(intent.getStringExtra(EXTRA_RESULT_TITLE, ""),
+        presenter.onCreate(
+            intent.getStringExtra(EXTRA_RESULT_TITLE, ""),
             intent.getStringExtra(EXTRA_RESULT_CONTENT, ""),
-            Level.valueOf(intent.getStringExtra(EXTRA_RESULT_LEVEL,  Level.EASY.name)),
+            Level.valueOf(intent.getStringExtra(EXTRA_RESULT_LEVEL, Level.EASY.name)),
             intent.getIntExtra(EXTRA_RESULT_PERCENTAGE, 0),
-            intent.getCharSequenceExtra(EXTRA_RESULT_SOLUTION) ?: "")
+            intent.getCharSequenceExtra(EXTRA_RESULT_SOLUTION) ?: ""
+        )
     }
 
     override fun onDestroy() {

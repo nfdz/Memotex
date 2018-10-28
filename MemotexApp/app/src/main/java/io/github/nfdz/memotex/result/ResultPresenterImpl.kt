@@ -6,12 +6,14 @@ class ResultPresenterImpl(var view: ResultView?, var interactor: ResultInteracto
 
     var title = ""
     var content = ""
+    var exerciseLevel = Level.EASY
     var level = Level.EASY
     var percentage = 0
 
     override fun onCreate(title: String, content: String, level: Level, percentage: Int, textSolution: CharSequence) {
         this.title = title
         this.content = content
+        this.exerciseLevel = level
         this.level = level
         this.percentage = percentage
         view?.showResults(title, level, percentage, textSolution)
@@ -31,7 +33,7 @@ class ResultPresenterImpl(var view: ResultView?, var interactor: ResultInteracto
     }
 
     override fun onShareResultsClick() {
-        interactor?.getTextToShare(title, level, percentage) {
+        interactor?.getTextToShare(title, exerciseLevel, percentage) {
             view?.shareResults(it)
         }
     }

@@ -35,7 +35,7 @@ class HomeInteractorImpl(val context: Context) : HomeInteractor, RealmChangeList
             SortCriteria.TITLE -> cachedTexts.sortedBy { it.title }
             SortCriteria.LEVEL -> cachedTexts.sortedWith(compareBy({it.getLevel()},{it.title}))
             SortCriteria.PERCENTAGE -> cachedTexts.sortedWith(compareBy({it.percentage},{it.title}))
-            SortCriteria.DATE -> cachedTexts.sortedWith(compareBy({it.timestamp},{it.title}))
+            SortCriteria.DATE -> cachedTexts.sortedWith(compareBy({-it.timestamp},{it.title}))
         })
     }
 
@@ -72,9 +72,6 @@ class HomeInteractorImpl(val context: Context) : HomeInteractor, RealmChangeList
     override fun changeTextLevel(title: String, level: Level) {
         realm?.beginTransaction()
         cachedTexts.find { it.title == title }?.levelString = level.name
-//        val managedText = realm?.where(TextRealm::class.java)?.equalTo("title", title)?.findFirst()
-//        managedText?.levelString = level.name
-//        realm?.copyToRealmOrUpdate(text)
         realm?.commitTransaction()
     }
 

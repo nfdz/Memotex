@@ -7,7 +7,6 @@ import com.vicpin.krealmextensions.queryFirst
 import com.vicpin.krealmextensions.save
 import io.github.nfdz.memotex.R
 import io.github.nfdz.memotex.common.*
-import timber.log.Timber
 
 class ExerciseInteractorImpl(val context: Context) : ExerciseInteractor {
 
@@ -35,7 +34,7 @@ class ExerciseInteractorImpl(val context: Context) : ExerciseInteractor {
                 val result = ExerciseAlgorithmImpl().execute(content, wordsToHide)
                 doMainThread { success(result) }
             } catch (e: Exception) {
-                Timber.e(e, "Cannot generate exercise")
+                reportException(Exception("Cannot generate an exercise", e))
                 doMainThread { error() }
             }
         }

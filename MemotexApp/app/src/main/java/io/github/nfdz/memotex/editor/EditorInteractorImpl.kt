@@ -7,8 +7,8 @@ import com.vicpin.krealmextensions.save
 import io.github.nfdz.memotex.common.TextRealm
 import io.github.nfdz.memotex.common.doAsync
 import io.github.nfdz.memotex.common.doMainThread
+import io.github.nfdz.memotex.common.reportException
 import io.realm.exceptions.RealmPrimaryKeyConstraintException
-import timber.log.Timber
 
 class EditorInteractorImpl : EditorInteractor {
 
@@ -20,7 +20,7 @@ class EditorInteractorImpl : EditorInteractor {
             } catch (e: RealmPrimaryKeyConstraintException) {
                 doMainThread { errorCallback(true) }
             } catch (e: Exception) {
-                Timber.e(e)
+                reportException(e)
                 doMainThread { errorCallback(false) }
             }
         }

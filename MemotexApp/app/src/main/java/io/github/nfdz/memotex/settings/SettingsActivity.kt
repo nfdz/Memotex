@@ -12,8 +12,8 @@ import android.preference.PreferenceManager
 import android.view.MenuItem
 import android.view.View
 import io.github.nfdz.memotex.R
+import io.github.nfdz.memotex.common.reportException
 import io.github.nfdz.memotex.common.showSnackbar
-import timber.log.Timber
 
 fun Context.startSettingsActivity() {
     startActivity(Intent(this, SettingsActivity::class.java))
@@ -126,8 +126,8 @@ class SettingsActivity : AppCompatPreferenceActivity() {
 
         private fun setupFeedbackPreference() {
             findPreference(getString(R.string.pref_about_feedback_key)).setOnPreferenceClickListener {
+                val email = getString(R.string.email_feedback_address)
                 try {
-                    val email = getString(R.string.email_feedback_address)
                     val subject = getString(R.string.email_feedback_subject)
 //                    val starter = Intent(Intent.ACTION_SEND).apply {
 //                        putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
@@ -140,8 +140,8 @@ class SettingsActivity : AppCompatPreferenceActivity() {
                     }
                     startActivity(starter)
                 } catch (e: Exception) {
-                    Timber.e(e)
-                    activity.findViewById<View>(android.R.id.content).showSnackbar(getString(R.string.email_feedback_error))
+                    reportException(e)
+                    activity.findViewById<View>(android.R.id.content).showSnackbar(email)
                 }
                 true
             }
@@ -149,11 +149,12 @@ class SettingsActivity : AppCompatPreferenceActivity() {
 
         private fun setupRepoPreference() {
             findPreference(getString(R.string.pref_about_repo_key)).setOnPreferenceClickListener {
+                val url = getString(R.string.url_repo_website)
                 try {
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_repo_website))))
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
                 } catch (e: Exception) {
-                    Timber.e(e)
-                    activity.findViewById<View>(android.R.id.content).showSnackbar(getString(R.string.url_repo_error))
+                    reportException(e)
+                    activity.findViewById<View>(android.R.id.content).showSnackbar(url)
                 }
                 true
             }

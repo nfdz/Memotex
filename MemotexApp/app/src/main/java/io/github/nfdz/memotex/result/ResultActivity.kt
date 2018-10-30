@@ -6,13 +6,9 @@ import android.os.Bundle
 import android.support.v4.app.NavUtils
 import android.support.v7.app.AppCompatActivity
 import io.github.nfdz.memotex.R
-import io.github.nfdz.memotex.common.Level
-import io.github.nfdz.memotex.common.getStringExtra
-import io.github.nfdz.memotex.common.showAskLevelDialog
-import io.github.nfdz.memotex.common.showSnackbar
+import io.github.nfdz.memotex.common.*
 import io.github.nfdz.memotex.exercise.startExerciseActivity
 import kotlinx.android.synthetic.main.activity_result.*
-import timber.log.Timber
 
 fun Context.startResultActivity(
     title: String,
@@ -94,7 +90,7 @@ class ResultActivity : AppCompatActivity(), ResultView {
             }
             startActivity(sendIntent)
         } catch (e: Exception) {
-            Timber.e(e)
+            reportException(e)
             coordinator_root.showSnackbar(getString(R.string.result_share_error))
         }
     }

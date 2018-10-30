@@ -43,8 +43,6 @@
     <string name="email_feedback_address" translatable="false">noe.fernandez@protonmail.com</string>
     <string name="email_feedback_subject">[Memotex] Hi!</string>
     <string name="url_repo_website" translatable="false">https://github.com/nfdz/Memotex</string>
-    <string name="email_feedback_error">Cannot open email app</string>
-    <string name="url_repo_error">Cannot open browser app</string>
 
     <string name="pref_lvl_words_title">Words to hide</string>
     <string name="pref_lvl_easy_words_key" translatable="false">easy_words</string>

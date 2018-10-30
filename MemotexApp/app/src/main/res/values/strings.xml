@@ -38,7 +38,7 @@
 
     <string name="pref_about_feedback_key" translatable="false">about_feedback</string>
     <string name="pref_about_repo_key" translatable="false">about_repo</string>
-    <string name="pref_about_feedback_title">Feedback, questions and bugs</string>
+    <string name="pref_about_feedback_title">Feedback, questions and bugs (noe.fernandez@protonmail.com)</string>
     <string name="pref_about_repo_title">Free software GPLv3</string>
     <string name="email_feedback_address" translatable="false">noe.fernandez@protonmail.com</string>
     <string name="email_feedback_subject">[Memotex] Hi!</string>

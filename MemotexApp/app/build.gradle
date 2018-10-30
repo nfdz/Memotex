@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 28
@@ -16,9 +17,23 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
+        debug {
+            buildConfigField 'String', "AppAdId", AppAdApiKey
+            resValue 'string', "app_ad_id", AppAdApiKey
+            buildConfigField 'String', "HomeAdBannerId", AppAdHomeBannerKey
+            resValue 'string', "home_ad_banner_id", AppAdHomeBannerKey
+            buildConfigField 'String', "ExerciseAdBannerId", AppAdExerciseBannerKey
+            resValue 'string', "exercise_ad_banner_id", AppAdExerciseBannerKey
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', "AppAdId", AppAdApiKey
+            resValue 'string', "app_ad_id", AppAdApiKey
+            buildConfigField 'String', "HomeAdBannerId", AppAdHomeBannerKey
+            resValue 'string', "home_ad_banner_id", AppAdHomeBannerKey
+            buildConfigField 'String', "ExerciseAdBannerId", AppAdExerciseBannerKey
+            resValue 'string', "exercise_ad_banner_id", AppAdExerciseBannerKey
         }
     }
 }
@@ -27,14 +42,19 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:customtabs:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
     implementation "com.github.vicpinm:krealmextensions:2.2.0"
+    implementation 'com.google.firebase:firebase-core:16.0.4'
+    implementation 'com.google.firebase:firebase-ads:17.0.0'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:support-vector-drawable:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+apply plugin: 'com.google.gms.google-services'

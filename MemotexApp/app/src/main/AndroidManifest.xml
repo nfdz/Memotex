@@ -51,6 +51,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.github.nfdz.memotex.home.HomeActivity" />
         </activity>
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/app_ad_id"/>
     </application>
 
 </manifest>

@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import android.preference.PreferenceManager
 import android.support.annotation.LayoutRes
+import android.support.annotation.Size
 import android.support.annotation.StringRes
 import android.support.annotation.WorkerThread
 import android.support.design.widget.Snackbar
@@ -22,7 +23,11 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import com.crashlytics.android.Crashlytics
+import com.google.firebase.analytics.FirebaseAnalytics
+import io.github.nfdz.memotex.BuildConfig
 import io.github.nfdz.memotex.R
+import timber.log.Timber
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
@@ -143,4 +148,20 @@ fun View.showKeyboard() {
 
 fun Int.bound(fromInclusive: Int, toInclusive: Int): Int {
     return Math.min(Math.max(this, fromInclusive), toInclusive)
+}
+
+fun Context.logAnalytics(@Size(min = 1L,max = 40L) event: String) {
+    if (BuildConfig.DEBUG) {
+        Timber.i("AnalyticsDebug: $event")
+    } else {
+        FirebaseAnalytics.getInstance(this).logEvent(event, null)
+    }
+}
+
+fun reportException(ex: Exception) {
+    if (BuildConfig.DEBUG) {
+        Timber.w(ex, "CrashlyticsReportDebug");
+    } else {
+        Crashlytics.logException(ex)
+    }
 }

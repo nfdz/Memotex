@@ -79,10 +79,14 @@ class ResultActivity : AppCompatActivity(), ResultView {
     }
 
     override fun askLevel(level: Level) {
-        showAskLevelDialog(level) { presenter.onLevelSelected(it) }
+        showAskLevelDialog(level) {
+            logAnalytics("RESULT_CHANGE_LEVEL")
+            presenter.onLevelSelected(it)
+        }
     }
 
     override fun shareResults(textToShare: String) {
+        logAnalytics("SHARE_RESULT")
         try {
             val sendIntent: Intent = Intent(Intent.ACTION_SEND).apply {
                 putExtra(Intent.EXTRA_TEXT, textToShare)
@@ -96,6 +100,7 @@ class ResultActivity : AppCompatActivity(), ResultView {
     }
 
     override fun navigateToAnotherExercise(title: String, content: String, level: Level) {
+        logAnalytics("ANOTHER_EXERCISE")
         startExerciseActivity(title, content, level, Intent.FLAG_ACTIVITY_CLEAR_TASK)
     }
 

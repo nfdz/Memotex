@@ -86,6 +86,7 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
         AlertDialog.Builder(this).apply {
             setTitle(R.string.action_sort)
         }.setSingleChoiceItems(options.toTypedArray(), checkedItem) { dialog, which ->
+            logAnalytics("CHANGE_SORT_CRITERIA")
             presenter.onSortCriteriaSelected(when(which) {
                 1 -> SortCriteria.LEVEL
                 2 -> SortCriteria.PERCENTAGE
@@ -98,6 +99,7 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
 
     override fun askLevel(title: String, level: Level) {
         showAskLevelDialog(level) {
+            logAnalytics("HOME_CHANGE_LEVEL")
             presenter.onLevelSelected(title, it)
         }
     }

@@ -160,7 +160,7 @@ fun Context.logAnalytics(@Size(min = 1L,max = 40L) event: String) {
 
 fun reportException(ex: Exception) {
     if (BuildConfig.DEBUG) {
-        Timber.w(ex, "CrashlyticsReportDebug");
+        Timber.w(ex, "CrashlyticsReportDebug")
     } else {
         Crashlytics.logException(ex)
     }

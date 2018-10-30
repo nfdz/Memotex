@@ -119,6 +119,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseView, AdapterListener {
     }
 
     override fun navigateToResult(result: ExerciseResult) {
+        logAnalytics("FINISH_EXERCISE")
         startResultActivity(result.title, result.content, result.level, result.percentage, result.textSolution)
     }
 

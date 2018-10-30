@@ -12,6 +12,7 @@ import android.preference.PreferenceManager
 import android.view.MenuItem
 import android.view.View
 import io.github.nfdz.memotex.R
+import io.github.nfdz.memotex.common.logAnalytics
 import io.github.nfdz.memotex.common.reportException
 import io.github.nfdz.memotex.common.showSnackbar
 
@@ -143,6 +144,7 @@ class SettingsActivity : AppCompatPreferenceActivity() {
                     reportException(e)
                     activity.findViewById<View>(android.R.id.content).showSnackbar(email)
                 }
+                activity.logAnalytics("FEEDBACK")
                 true
             }
         }
@@ -156,6 +158,7 @@ class SettingsActivity : AppCompatPreferenceActivity() {
                     reportException(e)
                     activity.findViewById<View>(android.R.id.content).showSnackbar(url)
                 }
+                activity.logAnalytics("REPOSITORY")
                 true
             }
         }

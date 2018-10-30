@@ -10,6 +10,7 @@ import android.text.InputType
 import android.text.TextWatcher
 import io.github.nfdz.memotex.R
 import io.github.nfdz.memotex.common.getStringExtra
+import io.github.nfdz.memotex.common.logAnalytics
 import io.github.nfdz.memotex.common.showSnackbar
 import kotlinx.android.synthetic.main.activity_editor.*
 
@@ -41,13 +42,13 @@ class EditorActivity : AppCompatActivity(), EditorView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupView()
-        presenter.onCreate(intent.action == ACTION_EDIT)
+        presenter.onCreate(ACTION_EDIT == intent.action)
     }
 
     private fun setupView() {
         setContentView(R.layout.activity_editor)
         setupActionBar()
-        if (intent.action == ACTION_EDIT) {
+        if (ACTION_EDIT == intent.action) {
             editor_tie_title.setText(intent.getStringExtra(EXTRA_TEXT_TITLE, ""))
             editor_til_title.hint = getString(R.string.text_title_hint_unmodifiable)
             editor_tie_title.setHint(R.string.text_title_hint_unmodifiable)
@@ -71,7 +72,7 @@ class EditorActivity : AppCompatActivity(), EditorView {
 
     private fun setupActionBar() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = if (intent.action == ACTION_ADD) getString(R.string.add_text_title) else getString(R.string.edit_text_title)
+        supportActionBar?.title = if (ACTION_ADD == intent.action) getString(R.string.add_text_title) else getString(R.string.edit_text_title)
     }
 
     override fun onDestroy() {
@@ -88,6 +89,7 @@ class EditorActivity : AppCompatActivity(), EditorView {
     }
 
     override fun navigateToFinish() {
+        logAnalytics( if (ACTION_EDIT == intent.action) "EDIT_TEXT" else "ADD_TEXT" )
         setResult(Activity.RESULT_OK)
         finish()
     }

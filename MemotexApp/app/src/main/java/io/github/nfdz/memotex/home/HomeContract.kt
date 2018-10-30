@@ -13,6 +13,7 @@ interface HomeView {
     fun navigateToEditText(title: String, content: String)
     fun navigateToExercise(title: String, content: String, level: Level)
     fun navigateToSettings()
+    fun navigateToTutorial()
 }
 
 interface HomePresenter {
@@ -33,6 +34,7 @@ interface HomePresenter {
 interface HomeInteractor {
     fun initialize(listener: (List<TextRealm>) -> Unit)
     fun destroy()
+    fun showTutorial(): Boolean
     fun getTextContent(title: String): String
     fun getSortCriteria(): SortCriteria
     fun setSortCriteria(sortCriteria: SortCriteria)

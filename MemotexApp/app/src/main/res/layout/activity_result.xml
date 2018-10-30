@@ -19,9 +19,9 @@
 
             <ImageView
                 android:id="@+id/result_iv_exit"
-                android:layout_width="@dimen/result_close_icon_size"
-                android:layout_height="@dimen/result_close_icon_size"
-                android:padding="@dimen/result_close_icon_padding"
+                android:layout_width="@dimen/close_icon_size"
+                android:layout_height="@dimen/close_icon_size"
+                android:padding="@dimen/close_icon_padding"
                 android:background="?attr/selectableItemBackground"
                 android:layout_gravity="top|end"
                 app:srcCompat="@drawable/ic_close_light"/>

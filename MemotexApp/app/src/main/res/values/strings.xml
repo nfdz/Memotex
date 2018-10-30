@@ -32,6 +32,15 @@
     <string name="result_share_error">Cannot share your result</string>
     <string name="result_share_template">I made it! I\'ve memorize my text \'%1$s\' with a success of %2$d%% in %3$s level. I\'ve use Memotex app.</string>
 
+    <string name="tutorial_close_description">Close tutorial</string>
+    <string name="tutorial_welcome_title">Welcome!</string>
+    <string name="tutorial_welcome_content">Do you need to memorize some text for your work, presentation or exam? With this tool you can test yourself and improve quickly to achieve your goal.\nIt is free, we fully respect your privacy and it is open source.\nEnjoy ♥</string>
+    <string name="tutorial_add_exercise">To add a new text, you just have to click on the \'+\' button.</string>
+    <string name="tutorial_edit_exercise">To edit the text, you just have to hold down.</string>
+    <string name="tutorial_delete_exercise">To delete a text, swipe your finger.</string>
+    <string name="tutorial_level">If it\'s too easy for you, change the difficulty by clicking on the trophy.</string>
+    <string name="tutorial_exercise">To complete an exercise, you just have to fill in the gaps that are missing by clicking on them.</string>
+
     <!-- Strings related to Settings -->
     <string name="pref_header_level">Level</string>
     <string name="pref_header_about">About</string>

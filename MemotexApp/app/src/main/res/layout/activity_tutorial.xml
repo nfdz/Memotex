@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/tutorial_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/tutorial_tv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/textColorLight"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tutorial_iv_exit"
+        app:layout_constraintBottom_toBottomOf="@+id/tutorial_iv_exit"
+        tools:text="1/4"/>
+
+    <ImageView
+        android:id="@+id/tutorial_iv_previous"
+        app:layout_constraintRight_toLeftOf="@+id/tutorial_tv_progress"
+        app:layout_constraintTop_toTopOf="@+id/tutorial_tv_progress"
+        app:layout_constraintBottom_toBottomOf="@+id/tutorial_tv_progress"
+        android:layout_width="@dimen/arrow_icon_size"
+        android:layout_height="@dimen/arrow_icon_size"
+        android:padding="@dimen/arrow_icon_padding"
+        android:contentDescription="@string/tutorial_close_description"
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginRight="@dimen/arrow_icon_horizontal_margin"
+        android:layout_marginEnd="@dimen/arrow_icon_horizontal_margin"
+        app:srcCompat="@drawable/ic_arrow_left_light"/>
+
+    <ImageView
+        android:id="@+id/tutorial_iv_next"
+        app:layout_constraintLeft_toRightOf="@+id/tutorial_tv_progress"
+        app:layout_constraintTop_toTopOf="@+id/tutorial_tv_progress"
+        app:layout_constraintBottom_toBottomOf="@+id/tutorial_tv_progress"
+        android:layout_width="@dimen/arrow_icon_size"
+        android:layout_height="@dimen/arrow_icon_size"
+        android:padding="@dimen/arrow_icon_padding"
+        android:contentDescription="@string/tutorial_close_description"
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginLeft="@dimen/arrow_icon_horizontal_margin"
+        android:layout_marginStart="@dimen/arrow_icon_horizontal_margin"
+        app:srcCompat="@drawable/ic_arrow_right_light"/>
+
+    <ImageView
+        android:id="@+id/tutorial_iv_exit"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="@dimen/close_icon_size"
+        android:layout_height="@dimen/close_icon_size"
+        android:padding="@dimen/close_icon_padding"
+        android:contentDescription="@string/tutorial_close_description"
+        android:background="?attr/selectableItemBackground"
+        app:srcCompat="@drawable/ic_close_light"/>
+
+</android.support.constraint.ConstraintLayout>

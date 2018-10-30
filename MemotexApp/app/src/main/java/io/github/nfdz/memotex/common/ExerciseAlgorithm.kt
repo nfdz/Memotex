@@ -81,7 +81,7 @@ class ExerciseAlgorithmImpl : ExerciseAlgorithm {
 
     private fun isWordValid(word: String): Boolean {
         for (c in word) {
-            if ((c !in 'a'..'z') && (c !in 'A'..'Z')) {
+            if ((c != '\'') && (c !in 'a'..'z') && (c !in 'A'..'Z')) {
                 return false
             }
         }

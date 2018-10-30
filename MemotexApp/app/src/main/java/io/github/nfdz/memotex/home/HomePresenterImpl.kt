@@ -10,6 +10,9 @@ class HomePresenterImpl(var view: HomeView?, var interactor: HomeInteractor?) : 
         interactor?.initialize {
             view?.setContent(it)
         }
+        if (true == interactor?.showTutorial()) {
+            view?.navigateToTutorial()
+        }
     }
 
     override fun onDestroy() {

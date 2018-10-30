@@ -29,6 +29,8 @@ import io.github.nfdz.memotex.BuildConfig
 import io.github.nfdz.memotex.R
 import timber.log.Timber
 
+//region View/ViewGroup utils
+
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 }
@@ -48,15 +50,40 @@ fun View.showSnackbarWithAction(text: CharSequence,
     return result
 }
 
-fun Context?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) = this?.let { Toast.makeText(it, textId, duration).show() }
-
 private fun processSnackbarText(text: CharSequence): Spanned {
     return HtmlCompat.fromHtml("<font color=\"#FAFAFA\">$text</font>", FROM_HTML_OPTION_USE_CSS_COLORS)
+}
+
+fun View.showKeyboard() {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+    this.requestFocus()
+    imm?.showSoftInput(this, 0)
+}
+
+//endregion
+
+//region Context utils
+
+fun Context?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) = this?.let { Toast.makeText(it, textId, duration).show() }
+
+fun Context.getStringFromPreferences(@StringRes key: Int, @StringRes default: Int): String {
+    val defaultString = getString(default)
+    val result: String? = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(key), defaultString)
+    return result ?: defaultString
+}
+
+@WorkerThread
+fun Context.setStringInPreferences(@StringRes key: Int, value: String) {
+    PreferenceManager.getDefaultSharedPreferences(this).edit().putString(getString(key), value).commit()
 }
 
 fun Intent.getStringExtra(name: String, defaultValue: String): String {
     return getStringExtra(name) ?: defaultValue
 }
+
+//endregion
+
+//region Threading utils
 
 class doAsync(val handler: () -> Unit) : AsyncTask<Void, Void, Void>() {
     init {
@@ -73,37 +100,9 @@ fun doMainThread(handler: () -> Unit) {
     Handler(Looper.getMainLooper()).post(handler)
 }
 
-fun Context.getStringFromPreferences(@StringRes key: Int, @StringRes default: Int): String {
-    val defaultString = getString(default)
-    val result: String? = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(key), defaultString)
-    return if (result != null) result else defaultString
-}
+//endregion
 
-@WorkerThread
-fun Context.setStringInPreferences(@StringRes key: Int, value: String) {
-    PreferenceManager.getDefaultSharedPreferences(this).edit().putString(getString(key), value).commit()
-}
-
-fun Context.showAskLevelDialog(level: Level, callback: (level: Level) -> Unit) {
-    val options = listOf<String>(getString(R.string.level_easy),
-        getString(R.string.level_medium),
-        getString(R.string.level_hard))
-    val checkedItem = when(level) {
-        Level.EASY -> 0
-        Level.MEDIUM -> 1
-        Level.HARD -> 2
-    }
-    AlertDialog.Builder(this).apply {
-        setTitle(R.string.text_change_level_title)
-    }.setSingleChoiceItems(options.toTypedArray(), checkedItem) { dialog, which ->
-        callback(when(which) {
-            1 -> Level.MEDIUM
-            2 ->Level.HARD
-            else -> Level.EASY
-        })
-        dialog.dismiss()
-    }.show()
-}
+//region Others utils
 
 fun EditText.onNextOrEnterListener(callback: () -> Unit) {
     setOnEditorActionListener { _, actionId, event ->
@@ -140,11 +139,27 @@ fun EditText.onNextOrEnterListener(callback: () -> Unit) {
     }
 }
 
-fun View.showKeyboard() {
-    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-    this.requestFocus()
-    imm?.showSoftInput(this, 0)
+fun Context.showAskLevelDialog(level: Level, callback: (level: Level) -> Unit) {
+    val options = listOf<String>(getString(R.string.level_easy),
+        getString(R.string.level_medium),
+        getString(R.string.level_hard))
+    val checkedItem = when(level) {
+        Level.EASY -> 0
+        Level.MEDIUM -> 1
+        Level.HARD -> 2
+    }
+    AlertDialog.Builder(this).apply {
+        setTitle(R.string.text_change_level_title)
+    }.setSingleChoiceItems(options.toTypedArray(), checkedItem) { dialog, which ->
+        callback(when(which) {
+            1 -> Level.MEDIUM
+            2 ->Level.HARD
+            else -> Level.EASY
+        })
+        dialog.dismiss()
+    }.show()
 }
+
 
 fun Int.bound(fromInclusive: Int, toInclusive: Int): Int {
     return Math.min(Math.max(this, fromInclusive), toInclusive)
@@ -165,3 +180,5 @@ fun reportException(ex: Exception) {
         Crashlytics.logException(ex)
     }
 }
+
+//endregion

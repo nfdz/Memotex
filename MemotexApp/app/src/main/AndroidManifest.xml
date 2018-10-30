@@ -3,14 +3,14 @@
     package="io.github.nfdz.memotex">
 
     <application
-        android:name="io.github.nfdz.memotex.MemotexApp"
+        android:name=".MemotexApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="io.github.nfdz.memotex.home.HomeActivity"
+            android:name=".home.HomeActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
@@ -21,39 +21,49 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="io.github.nfdz.memotex.settings.SettingsActivity"
+            android:name=".settings.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName="io.github.nfdz.memotex.home.HomeActivity">
+            android:parentActivityName=".home.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.github.nfdz.memotex.home.HomeActivity" />
         </activity>
         <activity
-            android:name="io.github.nfdz.memotex.editor.EditorActivity"
-            android:parentActivityName="io.github.nfdz.memotex.home.HomeActivity">
+            android:name=".editor.EditorActivity"
+            android:parentActivityName=".home.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.github.nfdz.memotex.home.HomeActivity" />
         </activity>
         <activity
-            android:name="io.github.nfdz.memotex.exercise.ExerciseActivity"
+            android:name=".exercise.ExerciseActivity"
             android:label="@string/exercise_title"
-            android:parentActivityName="io.github.nfdz.memotex.home.HomeActivity"
+            android:parentActivityName=".home.HomeActivity"
             android:windowSoftInputMode="adjustPan|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.github.nfdz.memotex.home.HomeActivity" />
         </activity>
-        <activity android:name="io.github.nfdz.memotex.result.ResultActivity"
-            android:parentActivityName="io.github.nfdz.memotex.home.HomeActivity"
+        <activity
+            android:name=".result.ResultActivity"
+            android:parentActivityName=".home.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.github.nfdz.memotex.home.HomeActivity" />
         </activity>
+        <activity
+            android:name=".tutorial.TutorialActivity"
+            android:parentActivityName=".home.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.nfdz.memotex.home.HomeActivity" />
+        </activity>
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/app_ad_id"/>
+            android:value="@string/app_ad_id" />
     </application>
 
 </manifest>

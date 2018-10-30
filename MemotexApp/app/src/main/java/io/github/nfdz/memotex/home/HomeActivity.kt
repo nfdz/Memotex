@@ -15,6 +15,7 @@ import io.github.nfdz.memotex.editor.startAddTextActivity
 import io.github.nfdz.memotex.editor.startEditTextActivity
 import io.github.nfdz.memotex.exercise.startExerciseActivity
 import io.github.nfdz.memotex.settings.startSettingsActivity
+import io.github.nfdz.memotex.tutorial.startTutorialActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 
@@ -118,6 +119,10 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
 
     override fun navigateToExercise(title: String, content: String, level: Level) {
         startExerciseActivity(title, content, level)
+    }
+
+    override fun navigateToTutorial() {
+        startTutorialActivity()
     }
 
     override fun onTextClick(entry: AdapterEntryData) {

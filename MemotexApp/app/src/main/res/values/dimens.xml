@@ -19,13 +19,19 @@
     <dimen name="exercise_title_size">18sp</dimen>
     <dimen name="exercise_content_height">160dp</dimen>
     <dimen name="result_header_height">100dp</dimen>
-    <dimen name="result_close_icon_size">42dp</dimen>
-    <dimen name="result_close_icon_padding">6dp</dimen>
     <dimen name="result_percentage_text_size">40sp</dimen>
     <dimen name="result_level_text_size">14sp</dimen>
     <dimen name="result_level_text_margin_bottom">8dp</dimen>
     <dimen name="result_solution_padding_bottom">@dimen/avoid_fab_padding_bottom</dimen>
     <dimen name="result_title_text_size">18sp</dimen>
     <dimen name="result_solution_text_size">18sp</dimen>
+    <dimen name="close_icon_size">42dp</dimen>
+    <dimen name="close_icon_padding">6dp</dimen>
+    <dimen name="arrow_icon_size">24dp</dimen>
+    <dimen name="arrow_icon_padding">1dp</dimen>
+    <dimen name="arrow_icon_horizontal_margin">6dp</dimen>
+    <dimen name="tutorial_margin">24dp</dimen>
+    <dimen name="tutorial_title_size">40sp</dimen>
+    <dimen name="tutorial_text_size">18sp</dimen>
 
 </resources>

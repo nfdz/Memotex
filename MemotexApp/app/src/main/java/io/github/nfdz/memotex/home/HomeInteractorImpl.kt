@@ -1,6 +1,7 @@
 package io.github.nfdz.memotex.home
 
 import android.content.Context
+import android.preference.PreferenceManager
 import io.github.nfdz.memotex.R
 import io.github.nfdz.memotex.common.*
 import io.realm.Realm
@@ -25,6 +26,16 @@ class HomeInteractorImpl(val context: Context) : HomeInteractor, RealmChangeList
         realm = null
     }
 
+    override fun showTutorial(): Boolean {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+        return if (prefs.getBoolean("FIRST_TIME", true)) {
+            prefs.edit().putBoolean("FIRST_TIME", false).apply()
+            true
+        } else {
+            false
+        }
+    }
+
     override fun onChange(t: RealmResults<TextRealm>) {
         cachedTexts = t
         notifyTexts()
@@ -32,10 +43,10 @@ class HomeInteractorImpl(val context: Context) : HomeInteractor, RealmChangeList
 
     private fun notifyTexts() {
         listener?.invoke(when(getSortCriteria()) {
-            SortCriteria.TITLE -> cachedTexts.sortedBy { it.title }
-            SortCriteria.LEVEL -> cachedTexts.sortedWith(compareBy({it.getLevel()},{it.title}))
-            SortCriteria.PERCENTAGE -> cachedTexts.sortedWith(compareBy({it.percentage},{it.title}))
-            SortCriteria.DATE -> cachedTexts.sortedWith(compareBy({-it.timestamp},{it.title}))
+            SortCriteria.TITLE -> cachedTexts.sortedBy { it.title.toUpperCase() }
+            SortCriteria.LEVEL -> cachedTexts.sortedWith(compareBy({it.getLevel()},{it.title.toUpperCase()}))
+            SortCriteria.PERCENTAGE -> cachedTexts.sortedWith(compareBy({it.percentage},{it.title.toUpperCase()}))
+            SortCriteria.DATE -> cachedTexts.sortedWith(compareBy({-it.timestamp},{it.title.toUpperCase()}))
         })
     }
 

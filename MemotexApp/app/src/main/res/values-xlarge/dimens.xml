@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="activity_margin">50dp</dimen>
+    <dimen name="home_entry_horizontal_margin">20dp</dimen>
+    <dimen name="result_header_height">300dp</dimen>
+    <dimen name="result_percentage_text_size">60sp</dimen>
+    <dimen name="result_level_text_size">30sp</dimen>
+    <dimen name="result_level_text_margin_bottom">40dp</dimen>
+    <dimen name="tutorial_content_width">450dp</dimen>
+
+</resources>

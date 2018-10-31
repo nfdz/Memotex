@@ -13,7 +13,7 @@ The most effective method to memorize anything you want, completely free. We ful
 </a></p>
 
 <p align="center"><a href="https://github.com/nfdz/memotex/releases">
-  <img width="250" src="dev/githubBadge.png?raw=true" alt="Get it on Github"/>
+  <img width="250" src="dev/github_badge.png?raw=true" alt="Get it on Github"/>
 </a></p>
 
 ## Screenshots

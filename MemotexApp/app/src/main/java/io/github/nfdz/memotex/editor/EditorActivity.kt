@@ -1,7 +1,6 @@
 package io.github.nfdz.memotex.editor
 
 import android.app.Activity
-import android.content.ClipDescription
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
@@ -98,19 +97,14 @@ class EditorActivity : AppCompatActivity(), EditorView {
         finish()
     }
 
-    fun pasteText() {
+    private fun pasteText() {
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        if (clipboard.hasPrimaryClip() &&
-            true == clipboard.primaryClipDescription?.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
-            val pasteData = clipboard.primaryClip?.getItemAt(0)?.text
-            if (TextUtils.isEmpty(pasteData)) {
-                editor_root.showSnackbar(getString(R.string.editor_paste_clipboard_empty))
-            } else {
-                editor_tie_content.append(pasteData.toString())
-            }
-        } else {
-            editor_root.showSnackbar(getString(R.string.editor_paste_clipboard_empty))
+        val pasteData = clipboard.primaryClip?.getItemAt(0)?.text.toString()
+        if (!TextUtils.isEmpty(pasteData)) {
+            editor_tie_content.append(pasteData)
+            return
         }
+        editor_root.showSnackbar(getString(R.string.editor_paste_clipboard_empty))
     }
 
 }

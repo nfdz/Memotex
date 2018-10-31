@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="action_sort">Ordenar por</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="text_deleted">Texto eliminado</string>
+    <string name="text_deleted_action">Deshacer</string>
+    <string name="text_change_level_title">Nivel</string>
+    <string name="level_easy">Fácil</string>
+    <string name="level_medium">Medio</string>
+    <string name="level_hard">Difícil</string>
+
+    <string name="sort_by_title">Título (a–z)</string>
+    <string name="sort_by_level">Nivel (fácil–difícil)</string>
+    <string name="sort_by_percentage">Porcentaje (0–100)</string>
+    <string name="sort_by_date">Fecha (reciente–antiguo)</string>
+    <string name="title_activity_settings">Ajustes</string>
+
+    <string name="add_text_title">Añadir texto</string>
+    <string name="edit_text_title">Editar texto</string>
+    <string name="text_title_hint">Título</string>
+    <string name="text_title_hint_unmodifiable">Título (no se puede modificar)</string>
+    <string name="text_content_hint">Contenido</string>
+    <string name="editor_save_button">Guardar</string>
+    <string name="editor_save_title_error">El título es el mismo que el de otro texto, por favor usa uno nuevo</string>
+    <string name="editor_save_error">No se pudo guardar el texto</string>
+    <string name="editor_paste">Pegar</string>
+    <string name="editor_paste_clipboard_empty">El portapapeles esta vacio</string>
+
+    <string name="exercise_title">Ejercicio</string>
+    <string name="exercise_font_bigger_description">Hacer mas grande el texto</string>
+    <string name="exercise_font_smaller_description">Hacer mas pequeño el texto</string>
+    <string name="exercise_prepare_error">Lo siento, no fue posible generar un ejercicio para el texto seleccionado :(</string>
+    <string name="result_share_error">No se pudo compartir tu resultado</string>
+    <string name="result_share_template">¡Lo conseguí! He memorizado el texto \'%1$s\' con un éxito del %2$d%% en el nivel %3$s. He usado Memotex para lograrlo.</string>
+
+    <string name="tutorial_close_description">Cerrar tutorial</string>
+    <string name="tutorial_welcome_title">¡Bienvenido!</string>
+    <string name="tutorial_welcome_content">¿Necesitas memorizar algún texto para un trabajo, presentacion o examen? Con esta herramienta puedes ponerte a prueba y mejorar rapidamente para lograr tu objetivo.\nEs gratuita, respetamos completamente tu privacidad y es de codigo abierto.\nDisfruta ♥</string>
+    <string name="tutorial_add_exercise">Para añadir un nuevo texto sólo tienes que hacer click en el boton \"+\".</string>
+    <string name="tutorial_edit_exercise">Para editar el texto sólo tienes que mantener pulsado el título.</string>
+    <string name="tutorial_delete_exercise">Para eliminar un texto deslizalo hacia un lateral.</string>
+    <string name="tutorial_level">Si es demasiado fácil para ti, cambia la dificultad clicando en el trofeo.</string>
+    <string name="tutorial_exercise">Rellena los huecos que falta clicando sobre ellos para completar el ejercicio.</string>
+
+    <!-- Strings related to Settings -->
+    <string name="pref_header_level">Nivel</string>
+    <string name="pref_header_about">Acerca de</string>
+
+    <string name="pref_about_feedback_title">Comentarios y errores</string>
+    <string name="pref_about_repo_title">Software libre GPLv3</string>
+    <string name="email_feedback_subject">[Memotex] ¡Hola!</string>
+
+    <string name="pref_lvl_words_title">Palabras a esconder</string>
+    <string name="pref_lvl_restore_default_title">Restablecer valores por defecto</string>
+
+</resources>

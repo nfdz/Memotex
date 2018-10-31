@@ -1,12 +1,15 @@
 package io.github.nfdz.memotex.editor
 
 import android.app.Activity
+import android.content.ClipDescription
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.InputType
+import android.text.TextUtils
 import android.text.TextWatcher
 import io.github.nfdz.memotex.R
 import io.github.nfdz.memotex.common.getStringExtra
@@ -60,14 +63,15 @@ class EditorActivity : AppCompatActivity(), EditorView {
         } else {
             editor_tie_title.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
-                    btn_start_load.isEnabled = !(s?.isEmpty() ?: true)
+                    editor_btn_save.isEnabled = !(s?.isEmpty() ?: true)
                 }
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             })
-            btn_start_load.isEnabled = !(editor_tie_title.text?.isEmpty() ?: true)
+            editor_btn_save.isEnabled = !(editor_tie_title.text?.isEmpty() ?: true)
         }
-        btn_start_load.setOnClickListener { presenter.onSaveClick(editor_tie_title.text.toString(), editor_tie_content.text.toString()) }
+        editor_btn_save.setOnClickListener { presenter.onSaveClick(editor_tie_title.text.toString(), editor_tie_content.text.toString()) }
+        editor_btn_paste.setOnClickListener { pasteText() }
     }
 
     private fun setupActionBar() {
@@ -92,6 +96,21 @@ class EditorActivity : AppCompatActivity(), EditorView {
         logAnalytics( if (ACTION_EDIT == intent.action) "EDIT_TEXT" else "ADD_TEXT" )
         setResult(Activity.RESULT_OK)
         finish()
+    }
+
+    fun pasteText() {
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        if (clipboard.hasPrimaryClip() &&
+            true == clipboard.primaryClipDescription?.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
+            val pasteData = clipboard.primaryClip?.getItemAt(0)?.text
+            if (TextUtils.isEmpty(pasteData)) {
+                editor_root.showSnackbar(getString(R.string.editor_paste_clipboard_empty))
+            } else {
+                editor_tie_content.append(pasteData.toString())
+            }
+        } else {
+            editor_root.showSnackbar(getString(R.string.editor_paste_clipboard_empty))
+        }
     }
 
 }

@@ -24,6 +24,8 @@
     <string name="editor_save_button">Save</string>
     <string name="editor_save_title_error">The title is the same as that of another text, please use a new one</string>
     <string name="editor_save_error">Cannot save text</string>
+    <string name="editor_paste">&#160;Paste&#160;</string>
+    <string name="editor_paste_clipboard_empty">The clipboard is empty</string>
 
     <string name="exercise_title">Exercise</string>
     <string name="exercise_font_bigger_description">Increase font size</string>

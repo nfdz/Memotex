@@ -19,12 +19,12 @@ The most effective method to memorize anything you want, completely free. We ful
 ## Screenshots
 
 <p align="center">
-  <img src="dev/screenshots/st_en_1.png?raw=true" width="250" alt="Home"/>
-  <img src="dev/screenshots/st_en_2.png?raw=true" width="250" alt="Add text"/>
+  <img src="dev/st_en_1.png?raw=true" width="250" alt="Home"/>
+  <img src="dev/st_en_2.png?raw=true" width="250" alt="Add text"/>
 </p>
 <p align="center">
-  <img src="dev/screenshots/st_en_3.png?raw=true" width="250" alt="Exercise"/>
-  <img src="dev/screenshots/st_en_4.png?raw=true" width="250" alt="Result"/>
+  <img src="dev/st_en_3.png?raw=true" width="250" alt="Exercise"/>
+  <img src="dev/st_en_4.png?raw=true" width="250" alt="Result"/>
 </p>
 
 ## Features

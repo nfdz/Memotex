@@ -66,8 +66,6 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:textColor="@color/textColorLight"
                 android:layout_gravity="end"
-                android:drawableLeft="@drawable/ic_content_paste_light"
-                android:drawableStart="@drawable/ic_content_paste_light"
                 android:text="@string/editor_paste"/>
 
         </LinearLayout>

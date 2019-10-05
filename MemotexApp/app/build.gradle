@@ -19,22 +19,22 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField 'String', "AppAdId", AppAdApiKey
-            resValue 'string', "app_ad_id", AppAdApiKey
-            buildConfigField 'String', "HomeAdBannerId", AppAdHomeBannerKey
-            resValue 'string', "home_ad_banner_id", AppAdHomeBannerKey
-            buildConfigField 'String', "ExerciseAdBannerId", AppAdExerciseBannerKey
-            resValue 'string', "exercise_ad_banner_id", AppAdExerciseBannerKey
+//            buildConfigField 'String', "AppAdId", AppAdApiKey
+//            resValue 'string', "app_ad_id", AppAdApiKey
+//            buildConfigField 'String', "HomeAdBannerId", AppAdHomeBannerKey
+//            resValue 'string', "home_ad_banner_id", AppAdHomeBannerKey
+//            buildConfigField 'String', "ExerciseAdBannerId", AppAdExerciseBannerKey
+//            resValue 'string', "exercise_ad_banner_id", AppAdExerciseBannerKey
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', "AppAdId", AppAdApiKey
-            resValue 'string', "app_ad_id", AppAdApiKey
-            buildConfigField 'String', "HomeAdBannerId", AppAdHomeBannerKey
-            resValue 'string', "home_ad_banner_id", AppAdHomeBannerKey
-            buildConfigField 'String', "ExerciseAdBannerId", AppAdExerciseBannerKey
-            resValue 'string', "exercise_ad_banner_id", AppAdExerciseBannerKey
+//            buildConfigField 'String', "AppAdId", AppAdApiKey
+//            resValue 'string', "app_ad_id", AppAdApiKey
+//            buildConfigField 'String', "HomeAdBannerId", AppAdHomeBannerKey
+//            resValue 'string', "home_ad_banner_id", AppAdHomeBannerKey
+//            buildConfigField 'String', "ExerciseAdBannerId", AppAdExerciseBannerKey
+//            resValue 'string', "exercise_ad_banner_id", AppAdExerciseBannerKey
         }
     }
 }
@@ -51,7 +51,7 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
     implementation "com.github.vicpinm:krealmextensions:2.2.0"
     implementation 'com.google.firebase:firebase-analytics:17.2.0'
-    implementation 'com.google.firebase:firebase-ads:18.2.0'
+//    implementation 'com.google.firebase:firebase-ads:18.2.0'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'

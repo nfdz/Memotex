@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.google.android.gms.ads.AdRequest
 import io.github.nfdz.memotex.R
 import io.github.nfdz.memotex.common.*
 import io.github.nfdz.memotex.editor.startAddTextActivity
@@ -42,7 +41,7 @@ class HomeActivity : AppCompatActivity(), HomeView, AdapterListener {
         rv_texts.adapter = adapter
         ItemTouchHelper(TextSwipeController()).attachToRecyclerView(rv_texts)
         fab_add_text.setOnClickListener { presenter.onAddTextClick() }
-        home_av_banner.loadAd(AdRequest.Builder().build())
+//        home_av_banner.loadAd(AdRequest.Builder().build())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -3,7 +3,6 @@ package io.github.nfdz.memotex
 import androidx.multidex.MultiDexApplication
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
-import com.google.android.gms.ads.MobileAds
 import io.fabric.sdk.android.Fabric
 import io.realm.Realm
 import io.realm.RealmConfiguration
@@ -20,7 +19,7 @@ class MemotexApp : MultiDexApplication() {
         setupLogger()
         setupRealm()
         setupCrashlytics()
-        setupAds()
+//        setupAds()
     }
 
     private fun setupLogger() {
@@ -64,8 +63,8 @@ class MemotexApp : MultiDexApplication() {
         //        Fabric.with(fabric);
     }
 
-    private fun setupAds() {
-        MobileAds.initialize(this, BuildConfig.AppAdId)
-    }
+//    private fun setupAds() {
+//        MobileAds.initialize(this, BuildConfig.AppAdId)
+//    }
 
 }

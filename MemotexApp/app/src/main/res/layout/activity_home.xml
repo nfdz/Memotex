@@ -60,13 +60,13 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/home_av_banner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/home_ad_banner_id">
-    </com.google.android.gms.ads.AdView>
+<!--    <com.google.android.gms.ads.AdView-->
+<!--        android:id="@+id/home_av_banner"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        ads:adSize="BANNER"-->
+<!--        ads:adUnitId="@string/home_ad_banner_id">-->
+<!--    </com.google.android.gms.ads.AdView>-->
 
 </LinearLayout>

@@ -15,7 +15,6 @@ import android.view.Gravity
 import android.view.View
 import android.widget.EditText
 import android.widget.FrameLayout
-import com.google.android.gms.ads.AdRequest
 import io.github.nfdz.memotex.R
 import io.github.nfdz.memotex.common.*
 import io.github.nfdz.memotex.result.startResultActivity
@@ -77,7 +76,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseView, AdapterListener {
         exercise_iv_font_big.setOnClickListener { presenter.onIncreaseFontSizeClick() }
         exercise_iv_font_small.setOnClickListener { presenter.onDecreaseFontSizeClick() }
         exercise_fab_check.setOnClickListener { presenter.onCheckExerciseClick(adapter.exercise, adapter.getExerciseAnswers()) }
-        exercise_av_banner.loadAd(AdRequest.Builder().build())
+//        exercise_av_banner.loadAd(AdRequest.Builder().build())
     }
 
     override fun onDestroy() {

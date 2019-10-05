@@ -1,6 +1,6 @@
 package io.github.nfdz.memotex.exercise
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +16,7 @@ interface AdapterListener {
     fun onChangeAnswerClick(position: Int, currentAnswer: String)
 }
 
-class ExerciseAdapter(initialFontSize: Float, val listener: AdapterListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ExerciseAdapter(initialFontSize: Float, val listener: AdapterListener) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     private val SPACE_VIEW_TYPE = 0
     private val TEXT_VIEW_TYPE = 1
@@ -59,7 +59,7 @@ class ExerciseAdapter(initialFontSize: Float, val listener: AdapterListener) : R
         listener.onProgressChanged(Math.ceil(100*answers.size.toDouble()/slotsToFill).toInt())
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         return when(viewType) {
             TEXT_VIEW_TYPE -> { TextHolder(parent.inflate(R.layout.item_exercise_text)) }
             SLOT_VIEW_TYPE -> { SlotHolder(parent.inflate(R.layout.item_exercise_slot), listener) }
@@ -78,7 +78,7 @@ class ExerciseAdapter(initialFontSize: Float, val listener: AdapterListener) : R
 
     override fun getItemCount() = exercise.elements.size
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         if (holder is TextHolder) {
             (exercise.elements[position] as? TextElement)?.let {
                 holder.bind(it.text, fontSize)
@@ -90,7 +90,7 @@ class ExerciseAdapter(initialFontSize: Float, val listener: AdapterListener) : R
         }
     }
 
-    class TextHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class TextHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
 
         fun bind(text: String, fontSize: Float) = with(itemView) {
             item_exercise_text.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize)
@@ -99,7 +99,7 @@ class ExerciseAdapter(initialFontSize: Float, val listener: AdapterListener) : R
 
     }
 
-    class SlotHolder(view: View, val listener: AdapterListener) : RecyclerView.ViewHolder(view) {
+    class SlotHolder(view: View, val listener: AdapterListener) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
 
         fun bind(answer: String, fontSize: Float) = with(itemView) {
             item_exercise_slot.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize)
@@ -109,7 +109,7 @@ class ExerciseAdapter(initialFontSize: Float, val listener: AdapterListener) : R
 
     }
 
-    class SpaceHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class SpaceHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
 
         fun bind(fontSize: Float) = with(itemView) {
             item_exercise_space.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize)

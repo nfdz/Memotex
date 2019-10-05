@@ -5,11 +5,11 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.NavUtils
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.AppCompatEditText
-import android.support.v7.widget.LinearLayoutManager
+import androidx.core.app.NavUtils
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.text.InputType
 import android.view.Gravity
 import android.view.View
@@ -56,17 +56,17 @@ class ExerciseActivity : AppCompatActivity(), ExerciseView, AdapterListener {
             savedInstanceState?.getParcelable(EXTRA_EXERCISE))
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
-        outState?.putParcelable(EXTRA_EXERCISE, adapter.exercise)
-        outState?.putParcelable(EXTRA_EXERCISE_ANSWERS, adapter.getExerciseAnswers())
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putParcelable(EXTRA_EXERCISE, adapter.exercise)
+        outState.putParcelable(EXTRA_EXERCISE_ANSWERS, adapter.getExerciseAnswers())
         val llm = (exercise_rv.layoutManager as? LinearLayoutManager)
-        outState?.putInt(EXTRA_SCROLL_POSITION, llm?.findFirstCompletelyVisibleItemPosition() ?: 0)
+        outState.putInt(EXTRA_SCROLL_POSITION, llm?.findFirstCompletelyVisibleItemPosition() ?: 0)
         super.onSaveInstanceState(outState)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
-        adapter.setExerciseAnswers(savedInstanceState?.getParcelable<ExerciseAnswers>(EXTRA_EXERCISE_ANSWERS))
+        adapter.setExerciseAnswers(savedInstanceState?.getParcelable(EXTRA_EXERCISE_ANSWERS))
         exercise_rv.scrollToPosition(savedInstanceState?.getInt(EXTRA_SCROLL_POSITION) ?: 0)
     }
 

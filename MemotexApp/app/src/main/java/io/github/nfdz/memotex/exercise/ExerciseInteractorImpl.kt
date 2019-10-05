@@ -1,7 +1,7 @@
 package io.github.nfdz.memotex.exercise
 
 import android.content.Context
-import android.support.v4.text.HtmlCompat
+import androidx.core.text.HtmlCompat
 import com.vicpin.krealmextensions.executeTransaction
 import com.vicpin.krealmextensions.queryFirst
 import com.vicpin.krealmextensions.save

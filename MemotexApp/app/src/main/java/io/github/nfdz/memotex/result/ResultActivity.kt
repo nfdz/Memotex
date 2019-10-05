@@ -3,8 +3,8 @@ package io.github.nfdz.memotex.result
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.NavUtils
-import android.support.v7.app.AppCompatActivity
+import androidx.core.app.NavUtils
+import androidx.appcompat.app.AppCompatActivity
 import io.github.nfdz.memotex.R
 import io.github.nfdz.memotex.common.*
 import io.github.nfdz.memotex.exercise.startExerciseActivity

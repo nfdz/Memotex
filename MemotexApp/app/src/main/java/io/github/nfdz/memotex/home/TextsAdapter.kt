@@ -1,11 +1,11 @@
 package io.github.nfdz.memotex.home
 
-import android.support.v4.content.ContextCompat
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
-import android.support.v7.widget.helper.ItemTouchHelper.LEFT
-import android.support.v7.widget.helper.ItemTouchHelper.RIGHT
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper.LEFT
+import androidx.recyclerview.widget.ItemTouchHelper.RIGHT
 import android.view.View
 import android.view.ViewGroup
 import io.github.nfdz.memotex.R
@@ -24,7 +24,7 @@ interface AdapterListener {
 
 data class AdapterEntryData(val title: String, val level: Level, val percentage: Int)
 
-class TextsAdapter(data: List<AdapterEntryData> = emptyList(), val listener: AdapterListener) : RecyclerView.Adapter<TextsAdapter.TextEntryHolder>() {
+class TextsAdapter(data: List<AdapterEntryData> = emptyList(), val listener: AdapterListener) : androidx.recyclerview.widget.RecyclerView.Adapter<TextsAdapter.TextEntryHolder>() {
 
     var data by Delegates.observable(data) { _, oldList, newList ->
         val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
@@ -54,7 +54,7 @@ class TextsAdapter(data: List<AdapterEntryData> = emptyList(), val listener: Ada
 
     override fun getItemCount(): Int = data.size
 
-    class TextEntryHolder(view: View, val listener: AdapterListener) : RecyclerView.ViewHolder(view) {
+    class TextEntryHolder(view: View, val listener: AdapterListener) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
 
         var bindedText: AdapterEntryData? = null
 
@@ -88,15 +88,15 @@ class TextsAdapter(data: List<AdapterEntryData> = emptyList(), val listener: Ada
 
 class TextSwipeController : ItemTouchHelper.Callback() {
 
-    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+    override fun getMovementFlags(recyclerView: androidx.recyclerview.widget.RecyclerView, viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder): Int {
         return ItemTouchHelper.Callback.makeMovementFlags(0, LEFT or RIGHT)
     }
 
-    override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+    override fun onMove(recyclerView: androidx.recyclerview.widget.RecyclerView, viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, target: androidx.recyclerview.widget.RecyclerView.ViewHolder): Boolean {
         return false
     }
 
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+    override fun onSwiped(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, direction: Int) {
         if (viewHolder is TextsAdapter.TextEntryHolder) {
             viewHolder.onSwiped()
         }

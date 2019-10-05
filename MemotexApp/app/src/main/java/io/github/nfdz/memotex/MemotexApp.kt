@@ -1,6 +1,6 @@
 package io.github.nfdz.memotex
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
 import com.google.android.gms.ads.MobileAds
@@ -10,10 +10,10 @@ import io.realm.RealmConfiguration
 import timber.log.Timber
 
 
-class MemotexApp : Application() {
+class MemotexApp : MultiDexApplication() {
 
     private val DB_NAME = "memotex.realm"
-    private val SCHEMA_VERSION_NAME = 1L
+    private val SCHEMA_VERSION = 1L
 
     override fun onCreate() {
         super.onCreate()
@@ -38,7 +38,7 @@ class MemotexApp : Application() {
     private fun getRealmConfiguration(): RealmConfiguration {
         val bld = RealmConfiguration.Builder()
             .name(DB_NAME)
-            .schemaVersion(SCHEMA_VERSION_NAME)
+            .schemaVersion(SCHEMA_VERSION)
         if (!BuildConfig.DEBUG) {
             bld.deleteRealmIfMigrationNeeded()
         }

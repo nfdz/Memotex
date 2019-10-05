@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -31,7 +31,7 @@
         android:progress="0"
         tools:progress="80"/>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/exercise_rv"
         android:layout_width="0dp"
         android:layout_height="@dimen/exercise_content_height"
@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/exercise_tv_title"
         app:layout_constraintBottom_toTopOf="@+id/exercise_fab_check"
         android:clipToPadding="false"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal" />
 
     <ImageView
@@ -83,7 +83,7 @@
         android:layout_marginTop="@dimen/activity_margin"
         tools:text="Lorem ipsum "/>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/exercise_fab_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_check_text_light"/>
 
-    <android.support.constraint.Group
+    <androidx.constraintlayout.widget.Group
         android:id="@+id/exercise_group_ongoing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -130,4 +130,4 @@
         ads:adUnitId="@string/home_ad_banner_id">
     </com.google.android.gms.ads.AdView>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
